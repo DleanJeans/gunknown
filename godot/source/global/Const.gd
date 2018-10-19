@@ -8,3 +8,6 @@ const BLUE = Color('#00AAFF')
 
 const TEAM_RED = 'Red'
 const TEAM_BLUE = 'Blue'
+
+const RED_UNDER = Color('#80991A00')
+const BLUE_UNDER = Color('#80004466')

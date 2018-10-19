@@ -1,0 +1,79 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://source/ui/HUD.gd" type="Script" id=1]
+[ext_resource path="res://assets/png/Avatar.png" type="Texture" id=2]
+[ext_resource path="res://source/ui/HealthBar.tscn" type="PackedScene" id=3]
+[ext_resource path="res://source/ui/AmmoCount.tscn" type="PackedScene" id=4]
+[ext_resource path="res://source/ui/MatchInfo.tscn" type="PackedScene" id=5]
+
+[node name="HUD" type="Control"]
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+script = ExtResource( 1 )
+player_path = null
+teaming_path = null
+match_timer_path = null
+
+[node name="AvatarHealth" type="HBoxContainer" parent="."]
+anchor_left = 0.0
+anchor_top = 1.0
+anchor_right = 0.0
+anchor_bottom = 1.0
+margin_left = 50.0
+margin_top = -200.0
+margin_right = 204.0
+margin_bottom = -35.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+custom_constants/separation = 20
+alignment = 1
+_sections_unfolded = [ "Rect", "custom_constants" ]
+
+[node name="Avatar" type="TextureRect" parent="AvatarHealth"]
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 150.0
+margin_bottom = 165.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+texture = ExtResource( 2 )
+stretch_mode = 0
+_sections_unfolded = [ "Rect" ]
+
+[node name="HealthBar" parent="AvatarHealth" instance=ExtResource( 3 )]
+margin_left = 170.0
+margin_right = 170.0
+margin_bottom = 165.0
+rect_min_size = Vector2( 0, 165 )
+size_flags_horizontal = 0
+size_flags_vertical = 0
+_sections_unfolded = [ "Anchor", "Grow Direction", "Margin", "Rect", "Size Flags", "Tint", "texture_progress" ]
+
+[node name="AmmoCount" parent="." instance=ExtResource( 4 )]
+anchor_left = 1.0
+anchor_top = 1.0
+margin_left = -178.0
+margin_top = -175.0
+margin_right = -58.0
+margin_bottom = -45.0
+
+[node name="MatchInfo" parent="." instance=ExtResource( 5 )]
+

@@ -9,9 +9,11 @@ export(int) var ammo = 10
 export(int) var ammo_range = 5
 
 onready var ammo_left:int
+var initial_ammo:int
 
 func _ready():
-	ammo_left = ammo + rand_range(-ammo_range, ammo_range)
+	initial_ammo = ammo + rand_range(-ammo_range, ammo_range)
+	ammo_left = initial_ammo
 
 func shoot():
 	

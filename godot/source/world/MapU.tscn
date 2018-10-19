@@ -1,0 +1,142 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://source/world/World.gd" type="Script" id=1]
+[ext_resource path="res://source/world/SpawnZone.tscn" type="PackedScene" id=2]
+[ext_resource path="res://source/world/Wall.tscn" type="PackedScene" id=3]
+[ext_resource path="res://source/world/GunSpawner.tscn" type="PackedScene" id=4]
+
+[node name="MapU" type="YSort"]
+sort_enabled = true
+script = ExtResource( 1 )
+
+[node name="SpawnZoneBlue" parent="." instance=ExtResource( 2 )]
+position = Vector2( 1050, -100 )
+scale = Vector2( 11, 3 )
+_sections_unfolded = [ "Transform", "Z Index" ]
+team = "Blue"
+
+[node name="SpawnZoneRed" parent="." instance=ExtResource( 2 )]
+position = Vector2( -1050, -75 )
+scale = Vector2( 11, 3 )
+_sections_unfolded = [ "Transform", "Z Index" ]
+team = "Red"
+
+[node name="HolePlaceholder" parent="." instance=ExtResource( 3 )]
+width = 1000.0
+height = 1500.0
+
+[node name="Wall2" parent="." instance=ExtResource( 3 )]
+position = Vector2( 800, -250 )
+width = 200.0
+
+[node name="Wall3" parent="." instance=ExtResource( 3 )]
+position = Vector2( 1300, -250 )
+width = 200.0
+
+[node name="Wall4" parent="." instance=ExtResource( 3 )]
+position = Vector2( -800, -250 )
+width = 200.0
+
+[node name="Wall5" parent="." instance=ExtResource( 3 )]
+position = Vector2( -1300, -250 )
+width = 200.0
+
+[node name="Wall6" parent="." instance=ExtResource( 3 )]
+position = Vector2( -1050, -1825 )
+width = 300.0
+height = 250.0
+
+[node name="Wall7" parent="." instance=ExtResource( 3 )]
+position = Vector2( 1050, -1825 )
+width = 300.0
+height = 250.0
+
+[node name="Wall8" parent="." instance=ExtResource( 3 )]
+position = Vector2( 1050, -850 )
+width = 300.0
+height = 500.0
+
+[node name="Wall9" parent="." instance=ExtResource( 3 )]
+position = Vector2( -1050, -850 )
+width = 300.0
+height = 500.0
+
+[node name="Wall10" parent="." instance=ExtResource( 3 )]
+position = Vector2( 10, -1825 )
+width = 300.0
+height = 250.0
+
+[node name="RightWall" parent="." instance=ExtResource( 3 )]
+position = Vector2( 1700, 0 )
+width = 200.0
+height = 2400.0
+
+[node name="LeftWall" parent="." instance=ExtResource( 3 )]
+position = Vector2( -1700, 0 )
+width = 200.0
+height = 2400.0
+
+[node name="TopWall" parent="." instance=ExtResource( 3 )]
+position = Vector2( 0, -2400 )
+width = 3600.0
+height = 150.0
+
+[node name="BottomWall" parent="." instance=ExtResource( 3 )]
+position = Vector2( 0, 150 )
+width = 3600.0
+height = 150.0
+
+[node name="GunSpawner" parent="." instance=ExtResource( 4 )]
+position = Vector2( 850, -450 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="GunSpawner10" parent="." instance=ExtResource( 4 )]
+position = Vector2( -1250, -450 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="GunSpawner2" parent="." instance=ExtResource( 4 )]
+position = Vector2( 1250, -450 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="GunSpawner9" parent="." instance=ExtResource( 4 )]
+position = Vector2( -850, -450 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="GunSpawner3" parent="." instance=ExtResource( 4 )]
+position = Vector2( 1450, -450 )
+
+[node name="GunSpawner6" parent="." instance=ExtResource( 4 )]
+position = Vector2( -650, -450 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="GunSpawner4" parent="." instance=ExtResource( 4 )]
+position = Vector2( 650, -450 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="GunSpawner11" parent="." instance=ExtResource( 4 )]
+position = Vector2( 0, -2200 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="GunSpawner12" parent="." instance=ExtResource( 4 )]
+position = Vector2( 0, -1625 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="GunSpawner13" parent="." instance=ExtResource( 4 )]
+position = Vector2( 1400, -2100 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="GunSpawner14" parent="." instance=ExtResource( 4 )]
+position = Vector2( -1400, -2140 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="GunSpawner7" parent="." instance=ExtResource( 4 )]
+position = Vector2( -1450, -450 )
+
+[node name="GunSpawner5" parent="." instance=ExtResource( 4 )]
+position = Vector2( 1050, -450 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="GunSpawner8" parent="." instance=ExtResource( 4 )]
+position = Vector2( -1050, -450 )
+_sections_unfolded = [ "Transform" ]
+
