@@ -17,10 +17,13 @@ func set_team(new_team):
 func _ready():
 	_update_team()
 	
-	var rect_size = scale * 100 * 0.9
+	var rect_size = scale * 100 * 0.8
 	rect = Rect2(position - rect_size * 0.5, rect_size)
 	
-	_spawn_gunners(5)
+	if team == Const.TEAM_BLUE:
+		_spawn_gunners(4)
+	else:
+		_spawn_gunners(5)
 
 func _update_team():
 	var color = Const.RED

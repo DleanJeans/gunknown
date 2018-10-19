@@ -27,6 +27,10 @@ func die():
 	emit_signal('died')
 	queue_free()
 
+func free_gun():
+	gun.queue_free()
+	gun = null
+
 func owns_gun():
 	return gun != null
 

@@ -18,6 +18,9 @@ func set_angle(angle:float):
 func add_collision_layer(layer:int):
 	$Hitbox.collision_layer |= layer
 
+func _ready():
+	position += direction * 40
+
 func _physics_process(delta):
 	move_and_collide(velocity * delta)
 
