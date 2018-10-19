@@ -1,0 +1,65 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://source/world/Bullet.gd" type="Script" id=1]
+[ext_resource path="res://assets/png/square.png" type="Texture" id=2]
+[ext_resource path="res://assets/png/Glow.png" type="Texture" id=3]
+
+[sub_resource type="RectangleShape2D" id=1]
+
+custom_solver_bias = 0.0
+extents = Vector2( 20, 10 )
+
+[node name="Bullet" type="KinematicBody2D" groups=[
+"Bullets",
+]]
+input_pickable = false
+collision_layer = 2
+collision_mask = 0
+collision/safe_margin = 0.08
+motion/sync_to_physics = false
+script = ExtResource( 1 )
+_sections_unfolded = [ "Collision", "Z Index" ]
+speed = 2000
+damage = 20
+recoil = 500
+
+[node name="Sprite" type="Sprite" parent="."]
+scale = Vector2( 0.4, 0.2 )
+texture = ExtResource( 2 )
+_sections_unfolded = [ "Transform", "Visibility" ]
+
+[node name="Glow" type="Sprite" parent="."]
+modulate = Color( 0.95, 0.87, 0.05, 0.75 )
+scale = Vector2( 0.75, 0.5 )
+texture = ExtResource( 3 )
+_sections_unfolded = [ "Transform", "Visibility" ]
+
+[node name="Shape" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource( 1 )
+
+[node name="Hitbox" type="Area2D" parent="."]
+visible = false
+scale = Vector2( 1.25, 1.25 )
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+collision_layer = 2
+collision_mask = 5
+audio_bus_override = false
+audio_bus_name = "Master"
+_sections_unfolded = [ "Collision", "Transform" ]
+
+[node name="Shape" type="CollisionShape2D" parent="Hitbox"]
+shape = SubResource( 1 )
+
+[node name="Timer" type="Timer" parent="."]
+process_mode = 1
+wait_time = 1.0
+one_shot = false
+autostart = false
+
+[connection signal="area_entered" from="Hitbox" to="." method="_on_Hitbox_area_entered"]
+[connection signal="body_entered" from="Hitbox" to="." method="_on_Hitbox_body_entered"]

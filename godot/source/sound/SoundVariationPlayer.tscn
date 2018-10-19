@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://source/music/SoundVariationPlayer.gd" type="Script" id=1]
+
+[node name="SoundVariationPlayer" type="Node2D" index="0"]
+
+script = ExtResource( 1 )
+create_sound_player = null
+player_mode = 1
+enable_random_pitch = true
+random_pitch = 1.1
+root_node = ".."
+play_signal = ""
+stop_signal = ""
+free_on_finished = false
+
+

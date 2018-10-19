@@ -56,7 +56,7 @@ text = "Fullscreen"
 flat = true
 align = 1
 script = SubResource( 2 )
-_sections_unfolded = [ "custom_fonts", "custom_fonts/font" ]
+_sections_unfolded = [ "custom_colors", "custom_fonts", "custom_fonts/font" ]
 
 [node name="Shortcut" type="Label" parent="."]
 anchor_left = 0.0
@@ -78,5 +78,5 @@ valign = 1
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
-_sections_unfolded = [ "custom_fonts", "custom_fonts/font" ]
+_sections_unfolded = [ "custom_colors", "custom_fonts/font" ]
 

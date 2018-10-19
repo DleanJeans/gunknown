@@ -1,0 +1,50 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://source/world/SpawnZone.gd" type="Script" id=1]
+[ext_resource path="res://assets/png/square.png" type="Texture" id=2]
+
+[sub_resource type="RectangleShape2D" id=1]
+
+custom_solver_bias = 0.0
+extents = Vector2( 50, 50 )
+
+[node name="SpawnZone" type="Node2D"]
+z_index = -2
+script = ExtResource( 1 )
+team = "BLUE"
+
+[node name="Blocker" type="StaticBody2D" parent="."]
+input_pickable = false
+collision_layer = 0
+collision_mask = 2
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+_sections_unfolded = [ "Collision" ]
+
+[node name="Shape" type="CollisionShape2D" parent="Blocker"]
+shape = SubResource( 1 )
+_sections_unfolded = [ "shape" ]
+
+[node name="Area" type="Area2D" parent="."]
+visible = false
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+collision_layer = 0
+collision_mask = 0
+audio_bus_override = false
+audio_bus_name = "Master"
+_sections_unfolded = [ "Collision" ]
+
+[node name="Shape" type="CollisionShape2D" parent="Area"]
+shape = SubResource( 1 )
+_sections_unfolded = [ "shape" ]
+
+[node name="Sprite" type="Sprite" parent="."]
+modulate = Color( 1, 0.168627, 0, 1 )
+self_modulate = Color( 1, 1, 1, 0.5 )
+texture = ExtResource( 2 )
+_sections_unfolded = [ "Visibility" ]
+
