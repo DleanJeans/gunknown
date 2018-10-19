@@ -29,6 +29,7 @@ enable = true
 pause_mode = 2
 script = ExtResource( 2 )
 _sections_unfolded = [ "Pause" ]
+slomo_time_scale = 0.25
 
 [node name="Mechanics" type="Node2D" parent="."]
 script = ExtResource( 3 )
@@ -49,31 +50,19 @@ sort_enabled = true
 script = ExtResource( 8 )
 
 [node name="SpawnZoneBlue" parent="World" instance=ExtResource( 9 )]
-position = Vector2( 1050, -125 )
-scale = Vector2( 11, 3.5 )
+position = Vector2( 1050, -100 )
+scale = Vector2( 11, 3 )
 _sections_unfolded = [ "Transform", "Z Index" ]
 team = "Blue"
 
 [node name="SpawnZoneRed" parent="World" instance=ExtResource( 9 )]
-position = Vector2( -1050, -125 )
-scale = Vector2( 11, 3.5 )
+position = Vector2( -1050, -75 )
+scale = Vector2( 11, 3 )
 _sections_unfolded = [ "Transform", "Z Index" ]
 team = "Red"
 
 [node name="Gunner" parent="World" instance=ExtResource( 10 )]
-position = Vector2( -575, -365 )
-
-[node name="Gunner2" parent="World" instance=ExtResource( 10 )]
-position = Vector2( 650, -305 )
-
-[node name="Gunner3" parent="World" instance=ExtResource( 10 )]
-position = Vector2( 850, -580 )
-
-[node name="Gunner4" parent="World" instance=ExtResource( 10 )]
-position = Vector2( 1250, -580 )
-
-[node name="Gunner5" parent="World" instance=ExtResource( 10 )]
-position = Vector2( 1450, -320 )
+position = Vector2( -1050, -575 )
 
 [node name="HolePlaceholder" parent="World" instance=ExtResource( 11 )]
 width = 1000.0

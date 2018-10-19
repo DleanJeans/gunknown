@@ -24,7 +24,7 @@ func shoot():
 	bullet.position += bullet.direction * 40
 	
 	var gunner_team_layer = get_parent().get_node('Team').collision_layer
-	bullet.collision_layer |= gunner_team_layer
+	bullet.add_collision_layer(gunner_team_layer)
 	
 	emit_signal('shot', bullet)
 
