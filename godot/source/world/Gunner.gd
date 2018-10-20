@@ -14,7 +14,7 @@ export(float) var max_speed = 500
 export(float) var damp = 0.1
 
 var velocity = Vector2()
-var gun:Gun
+var gun
 
 var hp = 200 setget set_hp
 var dead = false
@@ -38,29 +38,37 @@ func die():
 	yield($AnimationPlayer, 'animation_finished')
 	emit_signal('died')
 	
-	if is_player():
-		hide()
-	else:
-		queue_free()
+	hide()
+	$Shape.disabled = true
+	$Hitbox/Shape.disabled = true
+	if has_gun():
+		free_gun()
+
+func revive():
+	$AnimationPlayer.play_backwards('Die')
+	hp = 200
+	dead = false
+	$Shape.disabled = false
+	$Hitbox/Shape.disabled = false
+	show()
 
 func free_gun():
 	gun.queue_free()
 	gun = null
 	emit_signal('ran_out_of_ammo')
 
-func owns_gun():
+func has_gun():
 	return gun != null
 
-func receive_gun(new_gun:Gun):
+func receive_gun(new_gun):
 	gun = new_gun
 	add_child(gun)
 	gun.position = $GunPosition.position
 	emit_signal('got_new_gun')
 
-func aim(target):
+func aim(target_position):
 	if not gun: return
 	
-	var target_position = target.position
 	var to_target = target_position - position
 	
 	gun.look_at(target_position)
@@ -73,16 +81,19 @@ func shoot():
 	emit_signal('shot')
 
 func move_right():
-	velocity += Direction.RIGHT * acceleration
+	move_towards(Direction.RIGHT)
 
 func move_left():
-	velocity += Direction.LEFT * acceleration
+	move_towards(Direction.LEFT)
 
 func move_up():
-	velocity += Direction.UP * acceleration
+	move_towards(Direction.UP)
 
 func move_down():
-	velocity += Direction.DOWN * acceleration
+	move_towards(Direction.DOWN)
+
+func move_towards(direction:Vector2):
+	velocity += direction * acceleration
 
 func _physics_process(delta):
 	_process_movement()

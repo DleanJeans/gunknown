@@ -15,8 +15,10 @@ z_index = -2
 script = ExtResource( 1 )
 _sections_unfolded = [ "Z Index" ]
 team = "BLUE"
+respawn_wait = 3
 
 [node name="Blocker" type="StaticBody2D" parent="."]
+editor/display_folded = true
 visible = false
 input_pickable = false
 collision_layer = 0
@@ -30,6 +32,7 @@ shape = SubResource( 1 )
 _sections_unfolded = [ "shape" ]
 
 [node name="Area" type="Area2D" parent="."]
+editor/display_folded = true
 visible = false
 input_pickable = true
 gravity_vec = Vector2( 0, 1 )

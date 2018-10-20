@@ -5,6 +5,7 @@ signal ticked
 signal match_began
 signal match_over
 
+export(float) var prematch_countdown = 3
 export(float) var minutes = 5
 
 onready var match_length = int(minutes * 60)
@@ -13,6 +14,8 @@ var time_left = 0
 var timeouts = 0
 
 func _ready():
+	$Timer.start(prematch_countdown)
+	
 	while $Timer.time_left > 0:
 		time_left = int($Timer.time_left)
 		emit_signal('ticked')

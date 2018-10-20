@@ -9,8 +9,6 @@ var blue_score = 0
 func _ready():
 	yield(get_tree(), 'idle_frame')
 	
-	assign_team_blue(get_parent().player)
-	
 	for zone in Group.get_nodes(Group.SPAWN_ZONES):
 		zone.connect('spawned', self, '_tag_new_gunner', [zone])
 

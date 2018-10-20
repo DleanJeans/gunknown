@@ -11,7 +11,7 @@ func _ready():
 
 func _on_gunner_entered(gunner:Gunner, spawner:GunSpawner):
 	gunner.set_meta('gun_spawner', spawner)
-	if not gunner.owns_gun():
+	if not gunner.has_gun():
 		_give_gun_to_gunner(gunner, spawner)
 
 func _give_gun_to_gunner(gunner:Gunner, spawner:GunSpawner):

@@ -16,7 +16,6 @@ func _ready():
 	ammo_left = initial_ammo
 
 func shoot():
-	
 	if _cannot_shoot(): 
 		if is_out_of_ammo():
 			get_parent().free_gun()
@@ -46,7 +45,7 @@ func _start_delay_timer():
 func _recoil():
 	$AnimationPlayer.play('Recoil')
 
-func _create_bullet() -> Bullet:
+func _create_bullet():
 	var bullet:Bullet = Scenes.Bullet.instance()
 	
 	var bullet_rotation = rotation + deg2rad(inaccuracy) * rand_range(-1, 1)
@@ -57,6 +56,7 @@ func _create_bullet() -> Bullet:
 	
 	var gunner_team_layer = get_parent().get_node('Team').collision_layer
 	bullet.add_collision_layer(gunner_team_layer)
+	bullet.team_name = get_parent().get_node('Team').team_name
 	
 	return bullet
 

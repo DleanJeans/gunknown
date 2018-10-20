@@ -3,10 +3,14 @@ class_name SpawnZone
 extends Node2D
 
 signal spawned(gunner)
+signal spawned_all
+signal respawned_player(gunner)
 
 export(String, 'Red', 'Blue') var team setget set_team
 
-var rect:Rect2
+onready var world = get_parent()
+
+var spawn_points = []
 
 func set_team(new_team):
 	team = new_team
@@ -16,14 +20,8 @@ func set_team(new_team):
 
 func _ready():
 	_update_team()
-	
-	var rect_size = scale * 100 * 0.8
-	rect = Rect2(position - rect_size * 0.5, rect_size)
-	
-	if team == Const.TEAM_BLUE:
-		_spawn_gunners(4)
-	else:
-		_spawn_gunners(5)
+	_get_spawn_points()
+	_spawn_gunners()
 
 func _update_team():
 	var color = Const.RED
@@ -36,18 +34,45 @@ func _update_team():
 	$Sprite.modulate = color
 	$Blocker.collision_mask = collision_mask
 
-func _spawn_gunners(num:int = 1):
-	yield(get_tree(), 'idle_frame')
+func _get_spawn_points():
+	for child in get_children():
+		if child is Position2D:
+			spawn_points.append(child.global_position)
+
+func _spawn_gunners():
+	yield(get_tree(), 'idle_frame') # do not remove
 	
-	var world = get_parent()
+	for position in spawn_points:
+		_spawn(position)
 	
-	for i in range(num):
-		var gunner = Scenes.Gunner.instance()
-		var random_position = Vector2()
-		random_position.x = rand_range(rect.position.x, rect.end.x)
-		random_position.y = rand_range(rect.position.y, rect.end.y)
-		
-		gunner.position = random_position
-		world.add_child(gunner)
-		
-		emit_signal('spawned', gunner)
+	emit_signal('spawned_all')
+
+func _spawn(position:Vector2):
+	var gunner = Scenes.Gunner.instance()
+	var brain = Scenes.Brain.instance()
+	
+	gunner.position = position
+	
+	gunner.add_child(brain)
+	world.add_child(gunner, true)
+	
+	emit_signal('spawned', gunner)
+	
+	gunner.connect('died', self, '_respawn', [gunner])
+	
+	return gunner
+
+export(float) var respawn_wait = 3
+
+func _respawn(gunner):
+	yield(get_tree().create_timer(respawn_wait, false), 'timeout')
+	
+	var spawn_point = _get_random_spawn_point()
+	gunner.revive()
+	gunner.position = spawn_point
+	
+	if gunner.has_meta('is_player'):
+		emit_signal('respawned_player', gunner)
+
+func _get_random_spawn_point():
+	return spawn_points[randi() % spawn_points.size()]

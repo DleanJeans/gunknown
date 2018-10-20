@@ -15,7 +15,7 @@ func _on_PlayButton_pressed():
 
 [sub_resource type="DynamicFont" id=2]
 
-size = 200
+size = 400
 outline_size = 0
 outline_color = Color( 1, 1, 1, 1 )
 use_mipmaps = false
@@ -171,6 +171,7 @@ margin_top = -110.0
 margin_right = 499.0
 margin_bottom = 135.0
 rect_rotation = 15.0
+rect_scale = Vector2( 0.5, 0.5 )
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 2

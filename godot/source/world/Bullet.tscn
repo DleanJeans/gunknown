@@ -55,11 +55,5 @@ _sections_unfolded = [ "Collision", "Transform" ]
 [node name="Shape" type="CollisionShape2D" parent="Hitbox"]
 shape = SubResource( 1 )
 
-[node name="Timer" type="Timer" parent="."]
-process_mode = 1
-wait_time = 1.0
-one_shot = false
-autostart = false
-
 [connection signal="area_entered" from="Hitbox" to="." method="_on_Hitbox_area_entered"]
 [connection signal="body_entered" from="Hitbox" to="." method="_on_Hitbox_body_entered"]

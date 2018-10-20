@@ -29,7 +29,7 @@ script = ExtResource( 2 )
 _sections_unfolded = [ "Offset", "Transform", "Z Index" ]
 fire_delay = 0.3
 inaccuracy = 5
-ammo = 10
+ammo = 20
 ammo_range = 5
 
 [node name="Tip" type="Position2D" parent="."]

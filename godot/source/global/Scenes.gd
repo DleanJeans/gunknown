@@ -1,7 +1,8 @@
 extends Node
 
-var Gun = load('res://source/world/Gun.tscn')
-var Gunner = load('res://source/world/Gunner.tscn')
-var Bullet = load('res://source/world/Bullet.tscn')
+var Gun = preload('res://source/world/Gun.tscn')
+var Gunner = preload('res://source/world/Gunner.tscn')
+var Bullet = preload('res://source/world/Bullet.tscn')
+var Brain = preload('res://source/ai/Brain.tscn')
 
-var TeamCircle = load('res://source/world/TeamCircle.tscn')
+var TeamCircle = preload('res://source/world/TeamCircle.tscn')

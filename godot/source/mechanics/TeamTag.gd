@@ -1,3 +1,4 @@
+class_name TeamTag
 extends Node2D
 
 export(String, 'Red', 'Blue') var team_name = 'Red'
@@ -5,6 +6,7 @@ export(String, 'Red', 'Blue') var team_name = 'Red'
 var collision_layer
 var color
 var group
+var enemy_layer
 
 func _ready():
 	_setup_data()
@@ -12,12 +14,14 @@ func _ready():
 
 func _setup_data():
 	match team_name:
-		'Red':
+		Const.TEAM_RED:
 			collision_layer = Const.LAYER_RED
+			enemy_layer = Const.LAYER_BLUE
 			color = Const.RED
 			group = Const.TEAM_RED
-		'Blue':
+		Const.TEAM_BLUE:
 			collision_layer = Const.LAYER_BLUE
+			enemy_layer = Const.LAYER_RED
 			color = Const.BLUE
 			group = Const.TEAM_BLUE
 

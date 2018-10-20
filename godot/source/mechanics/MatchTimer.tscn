@@ -6,13 +6,14 @@
 pause_mode = 2
 script = ExtResource( 1 )
 _sections_unfolded = [ "Pause" ]
+prematch_countdown = 3
 minutes = 5
 
 [node name="Timer" type="Timer" parent="."]
 process_mode = 1
 wait_time = 5.0
 one_shot = true
-autostart = true
+autostart = false
 _sections_unfolded = [ "Pause" ]
 
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

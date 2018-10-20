@@ -12,6 +12,9 @@ export(float) var random_offset = 5
 func _ready():
 	$AnimationPlayer.playback_speed = rand_range(0.4, 0.6)
 
+func has_gun():
+	return $Gun.visible
+
 func _on_PickupArea_area_entered(area:Area2D):
 	var gunner:Gunner = area.get_parent()
 	if $Gun.visible:
