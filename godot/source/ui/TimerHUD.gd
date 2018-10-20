@@ -1,14 +1,12 @@
 tool
 extends Control
 
-export(int) var time_left = 300 setget set_time_left
+export(int) var time_left = 3 setget set_time_left
 
 func set_time_left(value):
 	time_left = value
 	
-	if is_inside_tree():
-		print(time_left)
-		
+	if Engine.editor_hint or is_inside_tree():
 		var minutes = time_left / 60
 		var seconds = time_left % 60
 		

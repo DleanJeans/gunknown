@@ -55,6 +55,7 @@ margin_left = 750.0
 margin_right = 850.0
 margin_bottom = 50.0
 rect_min_size = Vector2( 100, 50 )
+time_left = 3
 
 [node name="BlueScore" parent="Container" instance=ExtResource( 2 )]
 anchor_right = 0.0

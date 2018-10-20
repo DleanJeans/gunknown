@@ -2,24 +2,27 @@ class_name MatchTimer
 extends Node2D
 
 signal ticked
+signal match_began
 signal match_over
 
 export(float) var minutes = 5
 
-onready var time_left = int(minutes * 60)
+onready var match_length = int(minutes * 60)
 
+var time_left = 0
 var timeouts = 0
+
+func _ready():
+	while $Timer.time_left > 0:
+		time_left = int($Timer.time_left)
+		emit_signal('ticked')
+		yield(get_tree().create_timer(0.5), 'timeout')
 
 func _on_Timer_timeout():
 	timeouts += 1
 	
 	if timeouts == 1:
-		get_tree().paused = false
-		$Timer.start(time_left)
-		
-		while $Timer.time_left > 0:
-			time_left = int($Timer.time_left)
-			yield(get_tree().create_timer(0.5, false), 'timeout')
-			emit_signal('ticked')
+		$Timer.start(match_length)
+		emit_signal('match_began')
 	else:
 		emit_signal('match_over')

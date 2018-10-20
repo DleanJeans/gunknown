@@ -11,3 +11,5 @@ const TEAM_BLUE = 'Blue'
 
 const RED_UNDER = Color('#80991A00')
 const BLUE_UNDER = Color('#80004466')
+
+const MAX_SCORE = 40

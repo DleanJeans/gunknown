@@ -58,7 +58,7 @@ func receive_gun(new_gun:Gun):
 	emit_signal('got_new_gun')
 
 func aim(target):
-	if gun == null: return
+	if not gun: return
 	
 	var target_position = target.position
 	var to_target = target_position - position
@@ -67,7 +67,7 @@ func aim(target):
 	gun.flip_v = to_target.x < 0
 
 func shoot():
-	if gun == null: return
+	if not gun: return
 	
 	gun.shoot()
 	emit_signal('shot')

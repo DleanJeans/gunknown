@@ -6,14 +6,14 @@
 [ext_resource path="res://assets/png/Gun.png" type="Texture" id=4]
 [ext_resource path="res://fonts/Montserrat-ExtraBold.ttf" type="DynamicFontData" id=5]
 
-[sub_resource type="GDScript" id=2]
+[sub_resource type="GDScript" id=1]
 
 script/source = "extends CanvasLayer
 
 func _on_PlayButton_pressed():
 	get_tree().change_scene('res://source/Game.tscn')"
 
-[sub_resource type="DynamicFont" id=3]
+[sub_resource type="DynamicFont" id=2]
 
 size = 200
 outline_size = 0
@@ -29,8 +29,8 @@ offset = Vector2( 0, 0 )
 rotation = 0.0
 scale = Vector2( 1, 1 )
 transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-script = SubResource( 2 )
-_sections_unfolded = [ "theme" ]
+script = SubResource( 1 )
+_sections_unfolded = [ "Pause", "theme" ]
 
 [node name="MapU" parent="." instance=ExtResource( 1 )]
 position = Vector2( -250, 1160 )
@@ -177,7 +177,7 @@ mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 2 )
 text = "?"
 percent_visible = 1.0
 lines_skipped = 0

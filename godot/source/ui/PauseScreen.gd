@@ -1,7 +1,5 @@
 extends Control
 
-export(PackedScene) var title_screen_path:PackedScene
-
 signal paused
 signal unpaused
 signal unpausing
@@ -13,29 +11,29 @@ func pause():
 		return
 	
 	show()
-	$AnimationPlayer.play("Pause")
+	$AnimationPlayer.play('Pause')
 	get_tree().paused = true
 	
-	emit_signal("paused")
+	emit_signal('paused')
 
 func unpause():
 	if not game_is_paused():
 		return
 	
-	emit_signal("unpausing")
+	emit_signal('unpausing')
 	
-	$AnimationPlayer.play_backwards("Pause")
+	$AnimationPlayer.play_backwards('Pause')
 	get_tree().paused = false
-	yield($AnimationPlayer, "animation_finished")
+	yield($AnimationPlayer, 'animation_finished')
 	hide()
 	
-	emit_signal("unpaused")
+	emit_signal('unpaused')
 
 func game_is_paused():
 	return get_tree().paused
 
 func _process(delta):
-	if Input.is_action_just_pressed("pause"):
+	if Input.is_action_just_pressed('pause'):
 		if visible:
 			unpause()
 		else: pause()
@@ -55,4 +53,4 @@ func restart_game():
 
 func quit_to_title():
 	unpause()
-	get_tree().change_scene("res://source/TitleScreen.tscn")
+	get_tree().change_scene('res://source/TitleScreen.tscn')

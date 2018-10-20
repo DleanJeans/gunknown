@@ -3,12 +3,14 @@
 [ext_resource path="res://source/mechanics/MatchTimer.gd" type="Script" id=1]
 
 [node name="MatchTimer" type="Node2D"]
+pause_mode = 2
 script = ExtResource( 1 )
+_sections_unfolded = [ "Pause" ]
 minutes = 5
 
 [node name="Timer" type="Timer" parent="."]
 process_mode = 1
-wait_time = 3.0
+wait_time = 5.0
 one_shot = true
 autostart = true
 _sections_unfolded = [ "Pause" ]
