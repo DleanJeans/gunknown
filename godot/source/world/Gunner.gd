@@ -46,7 +46,7 @@ func die():
 
 func revive():
 	$AnimationPlayer.play_backwards('Die')
-	hp = 200
+	self.hp = 200
 	dead = false
 	$Shape.disabled = false
 	$Hitbox/Shape.disabled = false

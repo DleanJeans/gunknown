@@ -3,11 +3,10 @@ extends Node2D
 
 signal spawned_gun(gun)
 
-signal gunner_entered(gunner)
-signal gunner_exited(gunner)
-
 export(float) var spawn_interval = 30
 export(float) var random_offset = 5
+
+var occupant:Gunner
 
 func _ready():
 	$AnimationPlayer.playback_speed = rand_range(0.4, 0.6)
@@ -18,13 +17,17 @@ func has_gun():
 func _on_PickupArea_area_entered(area:Area2D):
 	var gunner:Gunner = area.get_parent()
 	if $Gun.visible:
-		emit_signal('gunner_entered', gunner)
+		_give_gun_if_has_no_gun(gunner)
 
-func _on_PickupArea_area_exited(area:Area2D):
-	var gunner:Gunner = area.get_parent()
-	emit_signal('gunner_exited', gunner)
+func _give_gun_if_has_no_gun(gunner):
+	if not gunner.has_gun():
+		_give_gun(gunner)
 
-func get_gun() -> Gun:
+func _give_gun(gunner:Gunner):
+	var gun = _get_gun()
+	gunner.receive_gun(gun)
+
+func _get_gun():
 	var gun = Scenes.Gun.instance()
 	emit_signal('spawned_gun', gun)
 	
@@ -43,3 +46,8 @@ func _start_timer():
 # $Timer.timeout
 func _spawn_gun():
 	$AnimationPlayer.play('Appear')
+
+func _process(delta):
+	var gunners = $PickupArea.get_overlapping_bodies()
+	if gunners.size() > 0:
+		_give_gun_if_has_no_gun(gunners[0])

@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=2]
+[gd_scene load_steps=27 format=2]
 
 [ext_resource path="res://source/debug/Debug.gd" type="Script" id=1]
 [ext_resource path="res://source/debug/TimeControl.gd" type="Script" id=2]
@@ -6,32 +6,31 @@
 [ext_resource path="res://source/mechanics/Mechanics.gd" type="Script" id=4]
 [ext_resource path="res://source/mechanics/PlayerControl.gd" type="Script" id=5]
 [ext_resource path="res://source/mechanics/Shooting.gd" type="Script" id=6]
-[ext_resource path="res://source/mechanics/GunPickup.gd" type="Script" id=7]
-[ext_resource path="res://source/mechanics/Teaming.tscn" type="PackedScene" id=8]
-[ext_resource path="res://source/mechanics/MatchTimer.tscn" type="PackedScene" id=9]
-[ext_resource path="res://source/mechanics/PrematchCage.gd" type="Script" id=10]
-[ext_resource path="res://source/mechanics/Winning.gd" type="Script" id=11]
-[ext_resource path="res://source/mechanics/Respawning.gd" type="Script" id=12]
-[ext_resource path="res://source/ai/AICenter.gd" type="Script" id=13]
-[ext_resource path="res://source/ai/Navigation.gd" type="Script" id=14]
-[ext_resource path="res://source/world/World.gd" type="Script" id=15]
-[ext_resource path="res://source/world/SpawnZone.tscn" type="PackedScene" id=16]
-[ext_resource path="res://source/world/Wall.tscn" type="PackedScene" id=17]
-[ext_resource path="res://source/world/GunSpawner.tscn" type="PackedScene" id=18]
-[ext_resource path="res://source/world/InvisibleWall.tscn" type="PackedScene" id=19]
-[ext_resource path="res://source/feel/Feel.gd" type="Script" id=20]
-[ext_resource path="res://source/feel/ScreenShake.tscn" type="PackedScene" id=21]
-[ext_resource path="res://source/feel/CameraDirector.gd" type="Script" id=22]
-[ext_resource path="res://source/feel/ScreenFlash.tscn" type="PackedScene" id=23]
-[ext_resource path="res://source/ui/HUD.tscn" type="PackedScene" id=24]
-[ext_resource path="res://source/ui/GameOverScreen.tscn" type="PackedScene" id=25]
-[ext_resource path="res://source/ui/PauseScreen.tscn" type="PackedScene" id=26]
+[ext_resource path="res://source/mechanics/Teaming.tscn" type="PackedScene" id=7]
+[ext_resource path="res://source/mechanics/MatchTimer.tscn" type="PackedScene" id=8]
+[ext_resource path="res://source/mechanics/PrematchCage.gd" type="Script" id=9]
+[ext_resource path="res://source/mechanics/Winning.gd" type="Script" id=10]
+[ext_resource path="res://source/mechanics/Respawning.gd" type="Script" id=11]
+[ext_resource path="res://source/ai/AICenter.gd" type="Script" id=12]
+[ext_resource path="res://source/ai/Navigation.gd" type="Script" id=13]
+[ext_resource path="res://source/world/World.gd" type="Script" id=14]
+[ext_resource path="res://source/world/SpawnZone.tscn" type="PackedScene" id=15]
+[ext_resource path="res://source/world/Wall.tscn" type="PackedScene" id=16]
+[ext_resource path="res://source/world/GunSpawner.tscn" type="PackedScene" id=17]
+[ext_resource path="res://source/world/InvisibleWall.tscn" type="PackedScene" id=18]
+[ext_resource path="res://source/feel/Feel.gd" type="Script" id=19]
+[ext_resource path="res://source/feel/ScreenShake.tscn" type="PackedScene" id=20]
+[ext_resource path="res://source/feel/CameraDirector.gd" type="Script" id=21]
+[ext_resource path="res://source/feel/ScreenFlash.tscn" type="PackedScene" id=22]
+[ext_resource path="res://source/ui/HUD.tscn" type="PackedScene" id=23]
+[ext_resource path="res://source/ui/GameOverScreen.tscn" type="PackedScene" id=24]
+[ext_resource path="res://source/ui/PauseScreen.tscn" type="PackedScene" id=25]
 
 [sub_resource type="NavigationPolygon" id=1]
 
-vertices = PoolVector2Array( 1600, -2350, 1600, 50, 1220, -780, 1220, -1400, 1220, -1760, 1220, -2120, -1600, -2350, 880, -2130, 500, 50, 880, -780, 500, -1550, 880, -1400, -500, -1550, -500, 50, -880, -1400, -880, -1760, -510, -1760, -880, -780, -1600, 50, -1220, -780, -1220, -1400, 530, -1760, 880, -1760, 530, -2130, -510, -2130, -880, -2130, -1220, -2130, -1220, -1760 )
-polygons = [ PoolIntArray( 0, 1, 2, 3 ), PoolIntArray( 4, 0, 3 ), PoolIntArray( 0, 4, 5 ), PoolIntArray( 6, 0, 5, 7 ), PoolIntArray( 2, 1, 8, 9 ), PoolIntArray( 9, 8, 10, 11 ), PoolIntArray( 12, 13, 14, 15, 16 ), PoolIntArray( 17, 14, 13 ), PoolIntArray( 17, 13, 18, 19 ), PoolIntArray( 19, 18, 6, 20 ), PoolIntArray( 21, 7, 22, 10 ), PoolIntArray( 7, 21, 23 ), PoolIntArray( 6, 7, 23 ), PoolIntArray( 6, 23, 24 ), PoolIntArray( 6, 24, 25 ), PoolIntArray( 6, 25, 26 ), PoolIntArray( 15, 25, 24, 16 ), PoolIntArray( 22, 4, 3, 11, 10 ), PoolIntArray( 16, 21, 10, 12 ), PoolIntArray( 27, 15, 14, 20 ), PoolIntArray( 27, 20, 6 ), PoolIntArray( 27, 6, 26 ) ]
-outlines = [ PoolVector2Array( -1600, 50, -1600, -2350, 1600, -2350, 1600, 50, 500, 50, 500, -1550, -500, -1550, -500, 50 ), PoolVector2Array( -880, -780, -1220, -780, -1220, -1400, -880, -1400 ), PoolVector2Array( -880, -1760, -1220, -1760, -1220, -2130, -880, -2130 ), PoolVector2Array( -510, -2130, 530, -2130, 530, -1760, -510, -1760 ), PoolVector2Array( 880, -2130, 1220, -2120, 1220, -1760, 880, -1760 ), PoolVector2Array( 880, -1400, 1220, -1400, 1220, -780, 880, -780 ) ]
+vertices = PoolVector2Array( -860, -2130, -1600, -2350, 1600, -2350, -530, -2130, -1240, -2130, 1600, 50, 1240, -760, 1240, -1400, 1230, -1740, 1230, -2130, -1600, 50, -1240, -1740, -860, -1400, -530, -1740, -500, -1570, -500, 50, -860, -760, 500, 50, 860, -760, 500, -1570, 860, -1400, -1240, -760, 860, -1740, 550, -1740, 860, -2130, 550, -2130, -1240, -1400, -860, -1740 )
+polygons = [ PoolIntArray( 0, 1, 2, 3 ), PoolIntArray( 1, 0, 4 ), PoolIntArray( 2, 5, 6, 7 ), PoolIntArray( 2, 7, 8, 9 ), PoolIntArray( 10, 1, 4, 11 ), PoolIntArray( 12, 13, 14, 15, 16 ), PoolIntArray( 6, 5, 17, 18 ), PoolIntArray( 18, 17, 19, 20 ), PoolIntArray( 16, 15, 10, 21 ), PoolIntArray( 22, 8, 7, 20, 19 ), PoolIntArray( 22, 19, 23, 24 ), PoolIntArray( 13, 23, 19, 14 ), PoolIntArray( 24, 23, 25 ), PoolIntArray( 13, 12, 26, 27 ), PoolIntArray( 2, 9, 24 ), PoolIntArray( 26, 21, 10 ), PoolIntArray( 26, 10, 11 ), PoolIntArray( 26, 11, 27 ), PoolIntArray( 13, 27, 0, 3 ), PoolIntArray( 25, 3, 2 ), PoolIntArray( 25, 2, 24 ) ]
+outlines = [ PoolVector2Array( -1600, 50, -1600, -2350, 1600, -2350, 1600, 50, 500, 50, 500, -1570, -500, -1570, -500, 50 ), PoolVector2Array( -860, -760, -1240, -760, -1240, -1400, -860, -1400 ), PoolVector2Array( -860, -1740, -1240, -1740, -1240, -2130, -860, -2130 ), PoolVector2Array( -530, -2130, 550, -2130, 550, -1740, -530, -1740 ), PoolVector2Array( 860, -2130, 1230, -2130, 1230, -1740, 860, -1740 ), PoolVector2Array( 860, -1400, 1240, -1400, 1240, -760, 860, -760 ) ]
 
 [node name="Game" type="Node2D"]
 
@@ -63,31 +62,30 @@ enabled = false
 [node name="Shooting" type="Node2D" parent="Mechanics"]
 script = ExtResource( 6 )
 
-[node name="GunPickup" type="Node2D" parent="Mechanics"]
-script = ExtResource( 7 )
+[node name="Teaming" parent="Mechanics" instance=ExtResource( 7 )]
 
-[node name="Teaming" parent="Mechanics" instance=ExtResource( 8 )]
-
-[node name="MatchTimer" parent="Mechanics" instance=ExtResource( 9 )]
+[node name="MatchTimer" parent="Mechanics" instance=ExtResource( 8 )]
+pause_mode = 0
 prematch_countdown = 1.0
+minutes = 1.0
 
 [node name="PrematchCage" type="Node2D" parent="Mechanics"]
-script = ExtResource( 10 )
+script = ExtResource( 9 )
 
 [node name="Winning" type="Node2D" parent="Mechanics"]
-script = ExtResource( 11 )
+script = ExtResource( 10 )
 
 [node name="Respawning" type="Node2D" parent="Mechanics"]
-script = ExtResource( 12 )
+script = ExtResource( 11 )
 spawn_zone_path = NodePath("../../World/SpawnZoneBlue")
 camera_director_path = NodePath("../../Feel/CameraDirector")
 hud_path = NodePath("../../UI/HUD")
 
 [node name="AICenter" type="Node2D" parent="."]
-script = ExtResource( 13 )
+script = ExtResource( 12 )
 
 [node name="Navigation" type="Navigation2D" parent="AICenter"]
-script = ExtResource( 14 )
+script = ExtResource( 13 )
 
 [node name="NavPoly" type="NavigationPolygonInstance" parent="AICenter/Navigation"]
 navpoly = SubResource( 1 )
@@ -98,9 +96,9 @@ position = Vector2( 0, -1625 )
 
 [node name="World" type="YSort" parent="."]
 sort_enabled = true
-script = ExtResource( 15 )
+script = ExtResource( 14 )
 
-[node name="SpawnZoneBlue" parent="World" instance=ExtResource( 16 )]
+[node name="SpawnZoneBlue" parent="World" instance=ExtResource( 15 )]
 editor/display_folded = true
 position = Vector2( 1050, -75 )
 scale = Vector2( 11, 2.5 )
@@ -122,7 +120,7 @@ position = Vector2( 21.8182, 2 )
 
 [node name="Position5" type="Position2D" parent="World/SpawnZoneBlue"]
 
-[node name="SpawnZoneRed" parent="World" instance=ExtResource( 16 )]
+[node name="SpawnZoneRed" parent="World" instance=ExtResource( 15 )]
 editor/display_folded = true
 position = Vector2( -1050, -75 )
 scale = Vector2( 11, 2.5 )
@@ -149,124 +147,124 @@ _sections_unfolded = [ "Transform" ]
 position = Vector2( 20, 0 )
 _sections_unfolded = [ "Transform" ]
 
-[node name="HolePlaceholder" parent="World" instance=ExtResource( 17 )]
+[node name="HolePlaceholder" parent="World" instance=ExtResource( 16 )]
 width = 1000.0
 height = 1500.0
 
-[node name="Wall6" parent="World" instance=ExtResource( 17 )]
+[node name="Wall6" parent="World" instance=ExtResource( 16 )]
 position = Vector2( -1050, -1825 )
 width = 300.0
 height = 250.0
 
-[node name="Wall7" parent="World" instance=ExtResource( 17 )]
+[node name="Wall7" parent="World" instance=ExtResource( 16 )]
 position = Vector2( 1050, -1825 )
 width = 300.0
 height = 250.0
 
-[node name="Wall8" parent="World" instance=ExtResource( 17 )]
+[node name="Wall8" parent="World" instance=ExtResource( 16 )]
 position = Vector2( 1050, -850 )
 width = 300.0
 height = 500.0
 
-[node name="Wall9" parent="World" instance=ExtResource( 17 )]
+[node name="Wall9" parent="World" instance=ExtResource( 16 )]
 position = Vector2( -1050, -850 )
 width = 300.0
 height = 500.0
 
-[node name="Wall10" parent="World" instance=ExtResource( 17 )]
+[node name="Wall10" parent="World" instance=ExtResource( 16 )]
 position = Vector2( 10, -1825 )
 width = 1000.0
 height = 250.0
 
-[node name="RightWall" parent="World" instance=ExtResource( 17 )]
+[node name="RightWall" parent="World" instance=ExtResource( 16 )]
 position = Vector2( 1700, 0 )
 width = 200.0
 height = 2400.0
 
-[node name="LeftWall" parent="World" instance=ExtResource( 17 )]
+[node name="LeftWall" parent="World" instance=ExtResource( 16 )]
 position = Vector2( -1700, 0 )
 width = 200.0
 height = 2400.0
 
-[node name="TopWall" parent="World" instance=ExtResource( 17 )]
+[node name="TopWall" parent="World" instance=ExtResource( 16 )]
 position = Vector2( 0, -2400 )
 width = 3600.0
 height = 150.0
 
-[node name="BottomWall" parent="World" instance=ExtResource( 17 )]
+[node name="BottomWall" parent="World" instance=ExtResource( 16 )]
 position = Vector2( 0, 150 )
 width = 3600.0
 height = 150.0
 
-[node name="GunSpawner" parent="World" instance=ExtResource( 18 )]
+[node name="GunSpawner" parent="World" instance=ExtResource( 17 )]
 position = Vector2( 850, -450 )
 _sections_unfolded = [ "Transform" ]
 
-[node name="GunSpawner10" parent="World" instance=ExtResource( 18 )]
+[node name="GunSpawner10" parent="World" instance=ExtResource( 17 )]
 position = Vector2( -1250, -450 )
 _sections_unfolded = [ "Transform" ]
 
-[node name="GunSpawner2" parent="World" instance=ExtResource( 18 )]
+[node name="GunSpawner2" parent="World" instance=ExtResource( 17 )]
 position = Vector2( 1250, -450 )
 _sections_unfolded = [ "Transform" ]
 
-[node name="GunSpawner9" parent="World" instance=ExtResource( 18 )]
+[node name="GunSpawner9" parent="World" instance=ExtResource( 17 )]
 position = Vector2( -850, -450 )
 _sections_unfolded = [ "Transform" ]
 
-[node name="GunSpawner3" parent="World" instance=ExtResource( 18 )]
+[node name="GunSpawner3" parent="World" instance=ExtResource( 17 )]
 position = Vector2( 1450, -450 )
 
-[node name="GunSpawner6" parent="World" instance=ExtResource( 18 )]
+[node name="GunSpawner6" parent="World" instance=ExtResource( 17 )]
 position = Vector2( -650, -450 )
 _sections_unfolded = [ "Transform" ]
 
-[node name="GunSpawner4" parent="World" instance=ExtResource( 18 )]
+[node name="GunSpawner4" parent="World" instance=ExtResource( 17 )]
 position = Vector2( 650, -450 )
 _sections_unfolded = [ "Transform" ]
 
-[node name="GunSpawner11" parent="World" instance=ExtResource( 18 )]
+[node name="GunSpawner11" parent="World" instance=ExtResource( 17 )]
 position = Vector2( 0, -2200 )
 _sections_unfolded = [ "Transform" ]
 
-[node name="GunSpawner12" parent="World" instance=ExtResource( 18 )]
+[node name="GunSpawner12" parent="World" instance=ExtResource( 17 )]
 position = Vector2( 0, -1625 )
 _sections_unfolded = [ "Transform" ]
 
-[node name="GunSpawner13" parent="World" instance=ExtResource( 18 )]
+[node name="GunSpawner13" parent="World" instance=ExtResource( 17 )]
 position = Vector2( 1400, -2100 )
 _sections_unfolded = [ "Transform" ]
 
-[node name="GunSpawner14" parent="World" instance=ExtResource( 18 )]
+[node name="GunSpawner14" parent="World" instance=ExtResource( 17 )]
 position = Vector2( -1400, -2140 )
 _sections_unfolded = [ "Transform" ]
 
-[node name="GunSpawner7" parent="World" instance=ExtResource( 18 )]
+[node name="GunSpawner7" parent="World" instance=ExtResource( 17 )]
 position = Vector2( -1450, -450 )
 
-[node name="GunSpawner5" parent="World" instance=ExtResource( 18 )]
+[node name="GunSpawner5" parent="World" instance=ExtResource( 17 )]
 position = Vector2( 1050, -450 )
 _sections_unfolded = [ "Transform" ]
 
-[node name="GunSpawner8" parent="World" instance=ExtResource( 18 )]
+[node name="GunSpawner8" parent="World" instance=ExtResource( 17 )]
 position = Vector2( -1050, -450 )
 _sections_unfolded = [ "Transform" ]
 
-[node name="BlueInvisibleWall" parent="World" instance=ExtResource( 19 )]
+[node name="BlueInvisibleWall" parent="World" instance=ExtResource( 18 )]
 position = Vector2( 1046, -250 )
 scale = Vector2( 11, 1 )
 _sections_unfolded = [ "Transform" ]
 
-[node name="RedInvisibleWall2" parent="World" instance=ExtResource( 19 )]
+[node name="RedInvisibleWall2" parent="World" instance=ExtResource( 18 )]
 position = Vector2( -1050, -245 )
 scale = Vector2( 11, 1 )
 _sections_unfolded = [ "Transform" ]
 
 [node name="Feel" type="Node2D" parent="."]
-script = ExtResource( 20 )
+script = ExtResource( 19 )
 player_path = NodePath("")
 
-[node name="ScreenShake" parent="Feel" instance=ExtResource( 21 )]
+[node name="ScreenShake" parent="Feel" instance=ExtResource( 20 )]
 camera_node = NodePath("")
 moderate_trauma = 0.5
 max_angle = 10.0
@@ -274,11 +272,10 @@ max_offset = 50.0
 
 [node name="CameraDirector" type="Node2D" parent="Feel"]
 position = Vector2( 1046, -300 )
-script = ExtResource( 22 )
+script = ExtResource( 21 )
 mouse_weight = 0.4
 
 [node name="Camera" type="Camera2D" parent="Feel/CameraDirector"]
-visible = false
 anchor_mode = 1
 rotating = false
 current = true
@@ -287,7 +284,7 @@ limit_left = -1800
 limit_top = -2545
 limit_right = 1800
 limit_bottom = 150
-limit_smoothed = true
+limit_smoothed = false
 drag_margin_h_enabled = true
 drag_margin_v_enabled = true
 smoothing_enabled = true
@@ -303,7 +300,7 @@ editor_draw_limits = false
 editor_draw_drag_margin = false
 _sections_unfolded = [ "Drag Margin", "Limit", "Offset", "Smoothing", "Z Index" ]
 
-[node name="ScreenFlash" parent="Feel/CameraDirector" instance=ExtResource( 23 )]
+[node name="ScreenFlash" parent="Feel/CameraDirector" instance=ExtResource( 22 )]
 _sections_unfolded = [ "Rect", "Transform", "Visibility" ]
 
 [node name="UI" type="CanvasLayer" parent="."]
@@ -315,14 +312,14 @@ scale = Vector2( 1, 1 )
 transform = Transform2D( 1, 0, 0, 1, 0, 0 )
 _sections_unfolded = [ "Pause" ]
 
-[node name="HUD" parent="UI" instance=ExtResource( 24 )]
+[node name="HUD" parent="UI" instance=ExtResource( 23 )]
 teaming_path = NodePath("../../Mechanics/Teaming")
 match_timer_path = NodePath("../../Mechanics/MatchTimer")
 
-[node name="GameOverScreen" parent="UI" instance=ExtResource( 25 )]
+[node name="GameOverScreen" parent="UI" instance=ExtResource( 24 )]
 visible = false
 winning_path = NodePath("../../Mechanics/Winning")
 
-[node name="PauseScreen" parent="UI" instance=ExtResource( 26 )]
+[node name="PauseScreen" parent="UI" instance=ExtResource( 25 )]
 visible = false
 

@@ -28,7 +28,7 @@ offset = Vector2( 20, 0 )
 script = ExtResource( 2 )
 _sections_unfolded = [ "Offset", "Transform", "Z Index" ]
 fire_delay = 0.3
-inaccuracy = 5
+inaccuracy = 3.0
 ammo = 20
 ammo_range = 5
 

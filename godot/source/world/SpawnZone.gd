@@ -4,7 +4,6 @@ extends Node2D
 
 signal spawned(gunner)
 signal spawned_all
-signal respawned_player(gunner)
 
 export(String, 'Red', 'Blue') var team setget set_team
 
@@ -44,6 +43,7 @@ func _spawn_gunners():
 	
 	for position in spawn_points:
 		_spawn(position)
+		break
 	
 	emit_signal('spawned_all')
 
@@ -59,8 +59,6 @@ func _spawn(position:Vector2):
 	emit_signal('spawned', gunner)
 	
 	gunner.connect('died', self, '_respawn', [gunner])
-	
-	return gunner
 
 export(float) var respawn_wait = 3
 
@@ -70,9 +68,6 @@ func _respawn(gunner):
 	var spawn_point = _get_random_spawn_point()
 	gunner.revive()
 	gunner.position = spawn_point
-	
-	if gunner.has_meta('is_player'):
-		emit_signal('respawned_player', gunner)
 
 func _get_random_spawn_point():
 	return spawn_points[randi() % spawn_points.size()]

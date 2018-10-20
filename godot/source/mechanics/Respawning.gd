@@ -12,7 +12,6 @@ onready var player_control = $'../PlayerControl'
 
 func _ready():
 	spawn_zone.connect('spawned_all', self, '_select_player')
-	spawn_zone.connect('respawned_player', self, '_set_player')
 
 func _select_player():
 	var gunners = Group.get_nodes(Const.TEAM_BLUE)
@@ -28,5 +27,3 @@ func _set_player(player):
 	player_control.set_player(player)
 	hud.set_player(player)
 	camera_director.set_player(player)
-	
-	player.connect('died', self, '_set_player')
