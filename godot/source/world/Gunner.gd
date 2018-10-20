@@ -45,7 +45,6 @@ func die():
 		free_gun()
 
 func revive():
-	$AnimationPlayer.play_backwards('Die')
 	self.hp = 200
 	dead = false
 	$Shape.disabled = false
@@ -53,6 +52,9 @@ func revive():
 	show()
 	if has_gun():
 		free_gun()
+	$AnimationPlayer.play_backwards('Die')
+	yield($AnimationPlayer, 'animation_finished')
+	modulate = Color.white
 
 func free_gun():
 	gun.queue_free()

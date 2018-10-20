@@ -20,8 +20,9 @@ func _on_PickupArea_area_entered(area:Area2D):
 		_give_gun_if_has_no_gun(gunner)
 
 func _give_gun_if_has_no_gun(gunner):
-	if not gunner.has_gun():
+	if has_gun() and not gunner.has_gun():
 		_give_gun(gunner)
+		$GunPickupSound.play()
 
 func _give_gun(gunner:Gunner):
 	var gun = _get_gun()

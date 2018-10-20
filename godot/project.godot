@@ -131,6 +131,8 @@ window/size/width=1600
 window/size/height=900
 window/size/test_width=960
 window/size/test_height=540
+mouse_cursor/custom_image="res://assets/png/crosshair039.png"
+mouse_cursor/custom_image_hotspot=Vector2( 32, 32 )
 window/stretch/mode="2d"
 window/stretch/aspect="keep_width"
 

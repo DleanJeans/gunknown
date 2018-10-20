@@ -1,13 +1,19 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://source/world/Bullet.gd" type="Script" id=1]
 [ext_resource path="res://assets/png/square.png" type="Texture" id=2]
 [ext_resource path="res://assets/png/Glow.png" type="Texture" id=3]
+[ext_resource path="res://assets/wav/wall_hit.wav" type="AudioStream" id=4]
 
 [sub_resource type="RectangleShape2D" id=1]
 
 custom_solver_bias = 0.0
 extents = Vector2( 20, 10 )
+
+[sub_resource type="AudioStreamRandomPitch" id=2]
+
+audio_stream = ExtResource( 4 )
+random_pitch = 1.25
 
 [node name="Bullet" type="KinematicBody2D" groups=[
 "Bullets",
@@ -20,7 +26,7 @@ motion/sync_to_physics = false
 script = ExtResource( 1 )
 _sections_unfolded = [ "Collision", "Z Index" ]
 speed = 2000
-damage = 20
+damage = 30.0
 recoil = 500
 
 [node name="Sprite" type="Sprite" parent="."]
@@ -54,6 +60,30 @@ _sections_unfolded = [ "Collision", "Transform" ]
 
 [node name="Shape" type="CollisionShape2D" parent="Hitbox"]
 shape = SubResource( 1 )
+
+[node name="HitGunnerSound" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource( 2 )
+volume_db = -20.0
+pitch_scale = 1.0
+autoplay = false
+stream_paused = false
+max_distance = 2000.0
+attenuation = 0.5
+bus = "Master"
+area_mask = 1
+_sections_unfolded = [ "stream" ]
+
+[node name="HitWallSound" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource( 2 )
+volume_db = -10.0
+pitch_scale = 1.0
+autoplay = false
+stream_paused = false
+max_distance = 2000.0
+attenuation = 0.5
+bus = "Master"
+area_mask = 1
+_sections_unfolded = [ "stream" ]
 
 [connection signal="area_entered" from="Hitbox" to="." method="_on_Hitbox_area_entered"]
 [connection signal="body_entered" from="Hitbox" to="." method="_on_Hitbox_body_entered"]

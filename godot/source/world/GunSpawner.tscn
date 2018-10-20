@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://source/world/GunSpawner.gd" type="Script" id=1]
 [ext_resource path="res://assets/png/circle.png" type="Texture" id=2]
 [ext_resource path="res://source/world/Gun.tscn" type="PackedScene" id=3]
 [ext_resource path="res://assets/png/UpGlow.png" type="Texture" id=4]
+[ext_resource path="res://assets/wav/gun_pickup.wav" type="AudioStream" id=5]
 
 [sub_resource type="Animation" id=1]
 
@@ -102,6 +103,11 @@ tracks/0/keys = {
 custom_solver_bias = 0.0
 radius = 46.0977
 
+[sub_resource type="AudioStreamRandomPitch" id=5]
+
+audio_stream = ExtResource( 5 )
+random_pitch = 1.25
+
 [node name="GunSpawner" type="Node2D" groups=[
 "GunSpawners",
 ]]
@@ -160,6 +166,18 @@ _sections_unfolded = [ "Collision" ]
 [node name="Shape" type="CollisionShape2D" parent="PickupArea"]
 position = Vector2( 0, -65 )
 shape = SubResource( 4 )
+
+[node name="GunPickupSound" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource( 5 )
+volume_db = 0.0
+pitch_scale = 1.0
+autoplay = false
+stream_paused = false
+max_distance = 2000.0
+attenuation = 1.0
+bus = "Master"
+area_mask = 1
+_sections_unfolded = [ "stream" ]
 
 [connection signal="timeout" from="Timer" to="." method="_spawn_gun"]
 [connection signal="area_entered" from="PickupArea" to="." method="_on_PickupArea_area_entered"]

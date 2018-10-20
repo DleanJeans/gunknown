@@ -16,18 +16,30 @@ func _ready():
 	ammo_left = initial_ammo
 
 func shoot():
-	if _cannot_shoot(): 
+	if _cannot_shoot():
 		if is_out_of_ammo():
 			get_parent().free_gun()
+			
+			var empty_fire_sound = $EmptyFireSound
+			remove_child($EmptyFireSound)
+			get_parent().add_child(empty_fire_sound)
+			empty_fire_sound.play()
+			
 		return
 	
 	ammo_left -= 1
 	
 	_start_delay_timer()
 	_recoil()
+	$GunshotSound.play()
 	
 	var bullet = _create_bullet()
 	emit_signal('shot', bullet)
+	
+	if flip_v:
+		$Flash.position.y = 10
+	else:
+		$Flash.position.y = -10
 
 func _cannot_shoot():
 	return _is_in_delay() or is_out_of_ammo()
