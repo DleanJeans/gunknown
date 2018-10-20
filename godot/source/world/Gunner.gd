@@ -51,6 +51,8 @@ func revive():
 	$Shape.disabled = false
 	$Hitbox/Shape.disabled = false
 	show()
+	if has_gun():
+		free_gun()
 
 func free_gun():
 	gun.queue_free()

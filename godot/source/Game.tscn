@@ -43,7 +43,7 @@ enable = true
 pause_mode = 2
 script = ExtResource( 2 )
 _sections_unfolded = [ "Pause" ]
-slomo_time_scale = 0.25
+slomo_time_scale = 0.1
 
 [node name="HealthChanger" type="Node2D" parent="Debug"]
 script = ExtResource( 3 )
@@ -67,7 +67,7 @@ script = ExtResource( 6 )
 [node name="MatchTimer" parent="Mechanics" instance=ExtResource( 8 )]
 pause_mode = 0
 prematch_countdown = 1.0
-minutes = 1.0
+minutes = 3.0
 
 [node name="PrematchCage" type="Node2D" parent="Mechanics"]
 script = ExtResource( 9 )
@@ -93,6 +93,12 @@ enabled = true
 
 [node name="Center" type="Position2D" parent="AICenter/Navigation"]
 position = Vector2( 0, -1625 )
+
+[node name="BlueAdvance" type="Position2D" parent="AICenter/Navigation"]
+position = Vector2( -1050, -1560 )
+
+[node name="RedAdvance" type="Position2D" parent="AICenter/Navigation"]
+position = Vector2( 1040, -1540 )
 
 [node name="World" type="YSort" parent="."]
 sort_enabled = true

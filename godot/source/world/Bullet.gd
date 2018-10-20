@@ -19,8 +19,8 @@ func set_angle(angle:float):
 func add_collision_layer(layer:int):
 	$Hitbox.collision_layer |= layer
 
-func _ready():
-	position += direction * 40
+#func _ready():
+#	position += direction * 40
 
 func _physics_process(delta):
 	move_and_collide(velocity * delta)
@@ -34,12 +34,11 @@ func _on_Hitbox_area_entered(area:Area2D):
 	if hp <= 0 or not area.get_parent().name.begins_with('Gunner'): return
 	
 	var gunner = area.get_parent()
-	if gunner == shooter: return
+	var is_teammate = gunner.get_node('Team').team_name == team_name
+	if gunner == shooter or is_teammate: return
 	
 	_lose_hp()
 	
-	var is_teammate = gunner.get_node('Team').team_name == team_name
-	if is_teammate: return
 	gunner.take_damage(damage)
 	gunner.velocity += direction * recoil
 

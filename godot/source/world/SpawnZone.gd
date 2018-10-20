@@ -43,7 +43,6 @@ func _spawn_gunners():
 	
 	for position in spawn_points:
 		_spawn(position)
-		break
 	
 	emit_signal('spawned_all')
 

@@ -3,13 +3,16 @@ extends Seek
 export(float) var threshold = 100
 
 var path setget set_path
-var index = -1
+var index = 0
 
 var arrived = false
 
 func set_path(value):
 	path = value
 	arrived = false
+	if value:
+		index = 0
+		target_position = value[0]
 
 func get_steering():
 	if arrived:

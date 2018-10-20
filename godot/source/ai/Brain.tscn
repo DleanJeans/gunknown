@@ -1,9 +1,15 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://source/ai/Brain.gd" type="Script" id=1]
 [ext_resource path="res://source/ai/Steering.gd" type="Script" id=2]
 [ext_resource path="res://source/ai/steering/Seek.gd" type="Script" id=3]
 [ext_resource path="res://source/ai/FollowPath.gd" type="Script" id=4]
+[ext_resource path="res://source/ai/Separation.gd" type="Script" id=5]
+
+[sub_resource type="CircleShape2D" id=2]
+
+custom_solver_bias = 0.0
+radius = 100.0
 
 [sub_resource type="RectangleShape2D" id=1]
 
@@ -22,6 +28,26 @@ script = ExtResource( 3 )
 [node name="FollowPath" type="Node2D" parent="Steering"]
 script = ExtResource( 4 )
 threshold = 50.0
+
+[node name="Separation" type="Node2D" parent="Steering"]
+visible = false
+script = ExtResource( 5 )
+decay = 1000000
+
+[node name="Vicinity" type="Area2D" parent="Steering/Separation"]
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+collision_layer = 0
+audio_bus_override = false
+audio_bus_name = "Master"
+_sections_unfolded = [ "Collision" ]
+
+[node name="Shape" type="CollisionShape2D" parent="Steering/Separation/Vicinity"]
+shape = SubResource( 2 )
+_sections_unfolded = [ "shape" ]
 
 [node name="Vision" type="Area2D" parent="."]
 visible = false
