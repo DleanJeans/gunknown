@@ -7,11 +7,16 @@ var player_ref:WeakRef
 
 func set_player(player):
 	self.player = player
+	player.connect('shot', self, '_shake_back')
 	player_ref = weakref(player)
 	set_process(player != null)
 
 func _ready():
 	set_process(false)
+	
+func _shake_back():
+	var gun_direction = player.get_gun_direction()
+	$ScreenShake.shake_to(gun_direction)
 
 func _process(delta):
 	if player_ref.get_ref():

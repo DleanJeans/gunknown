@@ -2,15 +2,17 @@
 
 [ext_resource path="res://source/feel/ScreenShake.gd" type="Script" id=1]
 
-
 [node name="ScreenShake" type="Node2D"]
 script = ExtResource( 1 )
-camera_node = null
-light_trauma = 0.25
-moderate_trauma = 0.65
-heavy_trauma = 1
-trauma_power = 2
-trauma_decay = 1
-max_angle = 2
-max_offset = 5
+camera_node = NodePath("../Camera")
+strength = 50.0
+duration = 0.5
+
+[node name="Tween" type="Tween" parent="."]
+repeat = false
+playback_process_mode = 1
+playback_speed = 1.0
+playback/active = false
+playback/repeat = false
+playback/speed = 1.0
 

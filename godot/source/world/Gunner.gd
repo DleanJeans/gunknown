@@ -78,11 +78,17 @@ func aim(target_position):
 	gun.look_at(target_position)
 	gun.flip_v = to_target.x < 0
 
+func get_gun_direction():
+	if gun:
+		return Vector2(1, 0).rotated(gun.rotation)
+	else:
+		return Vector2()
+
 func shoot():
 	if not gun: return
 	
-	gun.shoot()
-	emit_signal('shot')
+	if gun.shoot():
+		emit_signal('shot')
 
 func move_right():
 	move_towards(Direction.RIGHT)

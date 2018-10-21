@@ -12,10 +12,11 @@ func _display_winner(winner_team:String):
 	if winner_team == Const.TEAM_BLUE:
 		$Team.modulate = Const.BLUE
 	else: $Team.modulate = Const.RED
-	show()
+	display()
 
-func show():
-	.show()
+func display():
+	$AnimationPlayer.play('Show')
+	yield($AnimationPlayer, 'animation_finished')
 	get_tree().paused = true
 
 func _on_MainMenu_pressed():

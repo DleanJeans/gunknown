@@ -7,6 +7,7 @@ export(float) var fire_delay = 0.3
 export(float) var inaccuracy = 5
 export(int) var ammo = 10
 export(int) var ammo_range = 5
+export(float) var knockback = 100
 
 onready var ammo_left:int
 var initial_ammo:int
@@ -25,7 +26,7 @@ func shoot():
 			get_parent().add_child(empty_fire_sound)
 			empty_fire_sound.play()
 			
-		return
+		return false
 	
 	ammo_left -= 1
 	
@@ -40,6 +41,8 @@ func shoot():
 		$Flash.position.y = 10
 	else:
 		$Flash.position.y = -10
+	
+	return true
 
 func _cannot_shoot():
 	return _is_in_delay() or is_out_of_ammo()
@@ -56,9 +59,11 @@ func _start_delay_timer():
 
 func _recoil():
 	$AnimationPlayer.play('Recoil')
+	var knockback_force = -Vector2(1, 0).rotated(rotation) * knockback
+	get_parent().velocity += knockback_force
 
 func _create_bullet():
-	var bullet:Bullet = Scenes.Bullet.instance()
+	var bullet = Scenes.Bullet.instance()
 	
 	var bullet_rotation = rotation + deg2rad(inaccuracy) * rand_range(-1, 1)
 	bullet.set_angle(bullet_rotation)
@@ -68,7 +73,7 @@ func _create_bullet():
 	
 	var gunner_team_layer = get_parent().get_node('Team').collision_layer
 	bullet.add_collision_layer(gunner_team_layer)
-	bullet.team_name = get_parent().get_node('Team').team_name
+	bullet.team = get_parent().get_node('Team')
 	
 	return bullet
 

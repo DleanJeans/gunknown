@@ -3,6 +3,9 @@ extends Node2D
 
 signal score_changed
 
+onready var match_timer = $'../MatchTimer'
+onready var winning = $'../Winning'
+
 var red_score = 0
 var blue_score = 0
 
@@ -32,9 +35,13 @@ func assign_team_blue(gunner:Gunner):
 	gunner.connect('died', self, '_add_red_score')
 
 func _add_blue_score():
+	if match_timer.match_over and winning.announced: return
+	
 	blue_score += 1
 	emit_signal('score_changed')
 
 func _add_red_score():
+	if match_timer.match_over and winning.announced: return
+	
 	red_score += 1
 	emit_signal('score_changed')

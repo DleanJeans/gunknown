@@ -11,13 +11,13 @@ func set_player(player:Gunner):
 	
 	player.connect('got_new_gun', self, '_show_self')
 	player.connect('shot', self, '_update_count')
-	player.connect('ran_out_of_ammo', self, 'hide')
+	player.connect('ran_out_of_ammo', $AnimationPlayer, 'play_backwards', ['Show'])
 
 func _show_self():
 	gun = player.get_node('Gun')
-	show()
 	AmmoLeft.text = '?'
 	MaxAmmo.text = '/ ?'
+	$AnimationPlayer.play('Show')
 
 func _update_count():
 	AmmoLeft.text = str(gun.ammo_left)

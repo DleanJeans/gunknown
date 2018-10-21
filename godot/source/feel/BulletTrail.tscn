@@ -1,0 +1,48 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://source/feel/BulletTrail.gd" type="Script" id=1]
+
+[sub_resource type="Gradient" id=1]
+
+offsets = PoolRealArray( 0, 0.423077, 1 )
+colors = PoolColorArray( 1, 1, 1, 0, 1, 1, 1, 0.5, 1, 1, 1, 0.75 )
+
+[sub_resource type="Animation" id=2]
+
+resource_name = "Fade"
+length = 0.1
+loop = false
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:self_modulate")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+
+[node name="BulletTrail" type="Line2D"]
+points = PoolVector2Array(  )
+width = 20.0
+default_color = Color( 1, 1, 1, 1 )
+gradient = SubResource( 1 )
+texture_mode = 1060439283
+sharp_limit = 2.0
+round_precision = 8
+script = ExtResource( 1 )
+_sections_unfolded = [ "Fill", "Visibility", "Z Index", "gradient" ]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("..")
+autoplay = ""
+playback_process_mode = 1
+playback_default_blend_time = 0.0
+playback_speed = 1.0
+anims/Fade = SubResource( 2 )
+blend_times = [  ]
+
