@@ -66,7 +66,6 @@ script = ExtResource( 6 )
 
 [node name="MatchTimer" parent="Mechanics" instance=ExtResource( 8 )]
 pause_mode = 0
-prematch_countdown = 1.0
 minutes = 3.0
 
 [node name="PrematchCage" type="Node2D" parent="Mechanics"]
@@ -249,7 +248,7 @@ _sections_unfolded = [ "Transform" ]
 position = Vector2( -1450, -450 )
 
 [node name="GunSpawner5" parent="World" instance=ExtResource( 17 )]
-position = Vector2( 1050, -450 )
+position = Vector2( 1046, -450 )
 _sections_unfolded = [ "Transform" ]
 
 [node name="GunSpawner8" parent="World" instance=ExtResource( 17 )]
