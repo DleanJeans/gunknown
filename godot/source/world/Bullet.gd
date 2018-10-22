@@ -61,4 +61,6 @@ func _lose_hp():
 		$Sprite.hide()
 		$AnimationPlayer.play('Impact')
 		velocity = Vector2()
-		#$ImpactParticles.emitting = true
+		
+		if OS.get_name() != 'HTML5':
+			$ImpactParticles.emitting = true

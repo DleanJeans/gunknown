@@ -5,7 +5,8 @@
 [ext_resource path="res://assets/png/Glow.png" type="Texture" id=3]
 [ext_resource path="res://assets/wav/wall_hit.wav" type="AudioStream" id=4]
 [ext_resource path="res://assets/png/circle.png" type="Texture" id=5]
-[ext_resource path="res://source/feel/BulletTrail.tscn" type="PackedScene" id=6]
+[ext_resource path="res://source/feel/ImpactParticles.tscn" type="PackedScene" id=6]
+[ext_resource path="res://source/feel/BulletTrail.tscn" type="PackedScene" id=7]
 
 [sub_resource type="RectangleShape2D" id=1]
 
@@ -47,45 +48,6 @@ tracks/1/keys = {
 "update": 0,
 "values": [ Color( 1, 1, 1, 0.00392157 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
 }
-
-[sub_resource type="ParticlesMaterial" id=4]
-
-render_priority = 0
-trail_divisor = 1
-emission_shape = 0
-flag_align_y = false
-flag_rotate_y = false
-flag_disable_z = true
-spread = 180.0
-flatness = 0.0
-gravity = Vector3( 0, 10, 0 )
-initial_velocity = 400.0
-initial_velocity_random = 0.5
-angular_velocity = 180.0
-angular_velocity_random = 0.5
-orbit_velocity = 0.0
-orbit_velocity_random = 0.0
-linear_accel = 0.0
-linear_accel_random = 0.0
-radial_accel = 0.0
-radial_accel_random = 0.0
-tangential_accel = 0.0
-tangential_accel_random = 0.0
-damping = 100.0
-damping_random = 0.5
-angle = 0.0
-angle_random = 1.0
-scale = 15.0
-scale_random = 0.5
-color = Color( 1, 0.843137, 0, 1 )
-hue_variation = 0.0
-hue_variation_random = 0.0
-anim_speed = 0.0
-anim_speed_random = 0.0
-anim_offset = 0.0
-anim_offset_random = 0.0
-anim_loop = false
-_sections_unfolded = [ "Color", "Initial Velocity", "Scale" ]
 
 [node name="Bullet" type="KinematicBody2D" groups=[
 "Bullets",
@@ -174,28 +136,9 @@ anims/Impact = SubResource( 3 )
 blend_times = [  ]
 _sections_unfolded = [ "Playback Options" ]
 
-[node name="ImpactParticles" type="Particles2D" parent="."]
-emitting = false
-amount = 8
-lifetime = 0.5
-one_shot = false
-preprocess = 0.0
-speed_scale = 1.0
-explosiveness = 1.0
-randomness = 1.0
-fixed_fps = 0
-fract_delta = true
-visibility_rect = Rect2( -100, -100, 200, 200 )
-local_coords = true
-draw_order = 0
-process_material = SubResource( 4 )
-texture = null
-normal_map = null
-h_frames = 1
-v_frames = 1
-_sections_unfolded = [ "Process Material", "Time", "process_material" ]
+[node name="ImpactParticles" parent="." instance=ExtResource( 6 )]
 
-[node name="BulletTrail" parent="." instance=ExtResource( 6 )]
+[node name="BulletTrail" parent="." instance=ExtResource( 7 )]
 
 [connection signal="area_entered" from="Hitbox" to="." method="_on_Hitbox_area_entered"]
 [connection signal="body_entered" from="Hitbox" to="." method="_on_Hitbox_body_entered"]

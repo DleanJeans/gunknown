@@ -8,7 +8,8 @@ onready var camera:Camera = get_node(camera_node)
 onready var half_duration = duration * 0.5
 
 func shake_to(direction:Vector2, multiplier = 1):
-	return
+	if OS.get_name() == 'HTML5':
+		return
 	var to = direction * strength * multiplier
 	
 	$Tween.stop_all()
