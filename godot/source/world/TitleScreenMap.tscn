@@ -4,7 +4,7 @@
 [ext_resource path="res://source/world/Wall.tscn" type="PackedScene" id=2]
 [ext_resource path="res://source/world/GunSpawner.tscn" type="PackedScene" id=3]
 
-[node name="MapU" type="YSort"]
+[node name="TitleScreenMap" type="YSort"]
 sort_enabled = true
 script = ExtResource( 1 )
 
