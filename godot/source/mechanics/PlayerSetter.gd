@@ -20,6 +20,7 @@ func _select_player():
 	
 	player.get_node('Brain').free()
 	player.set_meta('is_player', true)
+	GameData.set_data('player', player)
 	
 	_set_player(player)
 
