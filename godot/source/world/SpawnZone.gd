@@ -6,6 +6,8 @@ signal spawned(gunner)
 signal spawned_all
 
 export(String, 'Red', 'Blue') var team setget set_team
+export(bool) var enable_debug_spawn_limit = false
+export(int) var debug_spawn_limit = 1
 
 onready var world = get_parent()
 
@@ -43,8 +45,13 @@ func _spawn_gunners():
 	
 	for position in spawn_points:
 		_spawn(position)
+		if _reached_debug_spawn_limit():
+			break
 	
 	emit_signal('spawned_all')
+
+func _reached_debug_spawn_limit():
+	return enable_debug_spawn_limit and spawn_points.find(position) >= debug_spawn_limit - 1
 
 func _spawn(position:Vector2):
 	var gunner = Scenes.Gunner.instance()
