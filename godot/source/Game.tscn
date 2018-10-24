@@ -1,31 +1,32 @@
-[gd_scene load_steps=28 format=2]
+[gd_scene load_steps=29 format=2]
 
 [ext_resource path="res://source/debug/Debug.gd" type="Script" id=1]
 [ext_resource path="res://source/debug/TimeControl.gd" type="Script" id=2]
 [ext_resource path="res://source/debug/HealthChanger.gd" type="Script" id=3]
-[ext_resource path="res://source/mechanics/Mechanics.gd" type="Script" id=4]
-[ext_resource path="res://source/mechanics/PlayerControl.gd" type="Script" id=5]
-[ext_resource path="res://source/mechanics/Shooting.gd" type="Script" id=6]
-[ext_resource path="res://source/mechanics/Teaming.tscn" type="PackedScene" id=7]
-[ext_resource path="res://source/mechanics/MatchTimer.tscn" type="PackedScene" id=8]
-[ext_resource path="res://source/mechanics/PrematchCage.gd" type="Script" id=9]
-[ext_resource path="res://source/mechanics/Winning.gd" type="Script" id=10]
-[ext_resource path="res://source/mechanics/PlayerSetter.gd" type="Script" id=11]
-[ext_resource path="res://source/mechanics/AftermatchSlomo.gd" type="Script" id=12]
-[ext_resource path="res://source/ai/AICenter.gd" type="Script" id=13]
-[ext_resource path="res://source/ai/Navigation.gd" type="Script" id=14]
-[ext_resource path="res://source/world/World.gd" type="Script" id=15]
-[ext_resource path="res://source/world/SpawnZone.tscn" type="PackedScene" id=16]
-[ext_resource path="res://source/world/Wall.tscn" type="PackedScene" id=17]
-[ext_resource path="res://source/world/GunSpawner.tscn" type="PackedScene" id=18]
-[ext_resource path="res://source/world/InvisibleWall.tscn" type="PackedScene" id=19]
-[ext_resource path="res://source/feel/Feel.gd" type="Script" id=20]
-[ext_resource path="res://source/feel/CameraDirector.gd" type="Script" id=21]
-[ext_resource path="res://source/feel/ScreenFlash.tscn" type="PackedScene" id=22]
-[ext_resource path="res://source/feel/ScreenShake.tscn" type="PackedScene" id=23]
-[ext_resource path="res://source/ui/HUD.tscn" type="PackedScene" id=24]
-[ext_resource path="res://source/ui/GameOverScreen.tscn" type="PackedScene" id=25]
-[ext_resource path="res://source/ui/PauseScreen.tscn" type="PackedScene" id=26]
+[ext_resource path="res://source/debug/BotFollowMode.tscn" type="PackedScene" id=4]
+[ext_resource path="res://source/mechanics/Mechanics.gd" type="Script" id=5]
+[ext_resource path="res://source/mechanics/PlayerControl.gd" type="Script" id=6]
+[ext_resource path="res://source/mechanics/Shooting.gd" type="Script" id=7]
+[ext_resource path="res://source/mechanics/Teaming.tscn" type="PackedScene" id=8]
+[ext_resource path="res://source/mechanics/MatchTimer.tscn" type="PackedScene" id=9]
+[ext_resource path="res://source/mechanics/PrematchCage.gd" type="Script" id=10]
+[ext_resource path="res://source/mechanics/Winning.gd" type="Script" id=11]
+[ext_resource path="res://source/mechanics/PlayerSetter.gd" type="Script" id=12]
+[ext_resource path="res://source/mechanics/AftermatchSlomo.gd" type="Script" id=13]
+[ext_resource path="res://source/ai/AICenter.gd" type="Script" id=14]
+[ext_resource path="res://source/ai/Navigation.gd" type="Script" id=15]
+[ext_resource path="res://source/world/World.gd" type="Script" id=16]
+[ext_resource path="res://source/world/SpawnZone.tscn" type="PackedScene" id=17]
+[ext_resource path="res://source/world/Wall.tscn" type="PackedScene" id=18]
+[ext_resource path="res://source/world/GunSpawner.tscn" type="PackedScene" id=19]
+[ext_resource path="res://source/world/InvisibleWall.tscn" type="PackedScene" id=20]
+[ext_resource path="res://source/feel/Feel.gd" type="Script" id=21]
+[ext_resource path="res://source/feel/CameraDirector.gd" type="Script" id=22]
+[ext_resource path="res://source/feel/ScreenFlash.tscn" type="PackedScene" id=23]
+[ext_resource path="res://source/feel/ScreenShake.tscn" type="PackedScene" id=24]
+[ext_resource path="res://source/ui/HUD.tscn" type="PackedScene" id=25]
+[ext_resource path="res://source/ui/GameOverScreen.tscn" type="PackedScene" id=26]
+[ext_resource path="res://source/ui/PauseScreen.tscn" type="PackedScene" id=27]
 
 [sub_resource type="NavigationPolygon" id=1]
 
@@ -50,47 +51,50 @@ script = ExtResource( 3 )
 hp = 5
 kill_allowed = true
 
+[node name="BotFollowMode" parent="Debug" instance=ExtResource( 4 )]
+spawn_zone_path = NodePath("../../World/SpawnZoneBlue")
+
 [node name="Mechanics" type="Node2D" parent="."]
-script = ExtResource( 4 )
+script = ExtResource( 5 )
 world_path = "../World"
 player_path = NodePath("")
 
 [node name="PlayerControl" type="Node2D" parent="Mechanics"]
-script = ExtResource( 5 )
+script = ExtResource( 6 )
 enabled = false
 
 [node name="Shooting" type="Node2D" parent="Mechanics"]
-script = ExtResource( 6 )
+script = ExtResource( 7 )
 
-[node name="Teaming" parent="Mechanics" instance=ExtResource( 7 )]
+[node name="Teaming" parent="Mechanics" instance=ExtResource( 8 )]
 
-[node name="MatchTimer" parent="Mechanics" instance=ExtResource( 8 )]
+[node name="MatchTimer" parent="Mechanics" instance=ExtResource( 9 )]
 pause_mode = 0
 _sections_unfolded = [ "Pause", "Transform" ]
 minutes = 2.0
 
 [node name="PrematchCage" type="Node2D" parent="Mechanics"]
-script = ExtResource( 9 )
-
-[node name="Winning" type="Node2D" parent="Mechanics"]
 script = ExtResource( 10 )
 
-[node name="Respawning" type="Node2D" parent="Mechanics"]
+[node name="Winning" type="Node2D" parent="Mechanics"]
 script = ExtResource( 11 )
+
+[node name="PlayerSetter" type="Node2D" parent="Mechanics"]
+script = ExtResource( 12 )
 spawn_zone_path = NodePath("../../World/SpawnZoneBlue")
 camera_director_path = NodePath("../../Feel/CameraDirector")
 hud_path = NodePath("../../UI/HUD")
 
 [node name="AftermatchSlomo" type="Node2D" parent="Mechanics"]
-script = ExtResource( 12 )
+script = ExtResource( 13 )
 duration = 3
 time_scale = 0.15
 
 [node name="AICenter" type="Node2D" parent="."]
-script = ExtResource( 13 )
+script = ExtResource( 14 )
 
 [node name="Navigation" type="Navigation2D" parent="AICenter"]
-script = ExtResource( 14 )
+script = ExtResource( 15 )
 
 [node name="NavPoly" type="NavigationPolygonInstance" parent="AICenter/Navigation"]
 navpoly = SubResource( 1 )
@@ -100,190 +104,194 @@ enabled = true
 position = Vector2( 0, -1625 )
 
 [node name="BlueAdvance" type="Position2D" parent="AICenter/Navigation"]
-position = Vector2( -1050, -1560 )
+position = Vector2( -1050, -670 )
 
 [node name="RedAdvance" type="Position2D" parent="AICenter/Navigation"]
-position = Vector2( 1040, -1540 )
+position = Vector2( 1050, -670 )
 
 [node name="World" type="YSort" parent="."]
 sort_enabled = true
-script = ExtResource( 15 )
+script = ExtResource( 16 )
 
-[node name="SpawnZoneBlue" parent="World" instance=ExtResource( 16 )]
+[node name="SpawnZoneBlue" parent="World" instance=ExtResource( 17 )]
 editor/display_folded = true
 position = Vector2( 1050, -75 )
 scale = Vector2( 11, 2.5 )
 _sections_unfolded = [ "Transform", "Z Index" ]
 team = "Blue"
+enable_debug_spawn_limit = false
+debug_spawn_limit = 1
 
-[node name="Position" type="Position2D" parent="World/SpawnZoneBlue"]
+[node name="Position1" type="Position2D" parent="World/SpawnZoneBlue"]
+
+[node name="Position2" type="Position2D" parent="World/SpawnZoneBlue"]
+position = Vector2( -20, 0 )
+
+[node name="Position3" type="Position2D" parent="World/SpawnZoneBlue"]
+position = Vector2( 21.8182, 2 )
+
+[node name="Position4" type="Position2D" parent="World/SpawnZoneBlue"]
 position = Vector2( -40, 0 )
 _sections_unfolded = [ "Transform" ]
 
-[node name="Position2" type="Position2D" parent="World/SpawnZoneBlue"]
+[node name="Position5" type="Position2D" parent="World/SpawnZoneBlue"]
 position = Vector2( 41.8182, 2 )
 
-[node name="Position3" type="Position2D" parent="World/SpawnZoneBlue"]
-position = Vector2( -20, 0 )
-
-[node name="Position4" type="Position2D" parent="World/SpawnZoneBlue"]
-position = Vector2( 21.8182, 2 )
-
-[node name="Position5" type="Position2D" parent="World/SpawnZoneBlue"]
-
-[node name="SpawnZoneRed" parent="World" instance=ExtResource( 16 )]
+[node name="SpawnZoneRed" parent="World" instance=ExtResource( 17 )]
 editor/display_folded = true
 position = Vector2( -1050, -75 )
 scale = Vector2( 11, 2.5 )
 _sections_unfolded = [ "Transform", "Z Index" ]
 team = "Red"
+enable_debug_spawn_limit = false
+debug_spawn_limit = 1
 
-[node name="Position" type="Position2D" parent="World/SpawnZoneRed"]
+[node name="Position1" type="Position2D" parent="World/SpawnZoneRed"]
 position = Vector2( -3.8147e-006, 0 )
 _sections_unfolded = [ "Transform" ]
 
 [node name="Position2" type="Position2D" parent="World/SpawnZoneRed"]
-position = Vector2( 40, 0 )
-_sections_unfolded = [ "Transform" ]
-
-[node name="Position3" type="Position2D" parent="World/SpawnZoneRed"]
-position = Vector2( -40, 0 )
-_sections_unfolded = [ "Transform" ]
-
-[node name="Position4" type="Position2D" parent="World/SpawnZoneRed"]
 position = Vector2( -20, 0 )
 _sections_unfolded = [ "Transform" ]
 
-[node name="Position5" type="Position2D" parent="World/SpawnZoneRed"]
+[node name="Position3" type="Position2D" parent="World/SpawnZoneRed"]
 position = Vector2( 20, 0 )
 _sections_unfolded = [ "Transform" ]
 
-[node name="HolePlaceholder" parent="World" instance=ExtResource( 17 )]
+[node name="Position4" type="Position2D" parent="World/SpawnZoneRed"]
+position = Vector2( -40, 0 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="Position5" type="Position2D" parent="World/SpawnZoneRed"]
+position = Vector2( 40, 0 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="HolePlaceholder" parent="World" instance=ExtResource( 18 )]
 width = 1000.0
 height = 1500.0
 
-[node name="Wall6" parent="World" instance=ExtResource( 17 )]
+[node name="Wall6" parent="World" instance=ExtResource( 18 )]
 position = Vector2( -1050, -1825 )
 width = 300.0
 height = 250.0
 
-[node name="Wall7" parent="World" instance=ExtResource( 17 )]
+[node name="Wall7" parent="World" instance=ExtResource( 18 )]
 position = Vector2( 1050, -1825 )
 width = 300.0
 height = 250.0
 
-[node name="Wall8" parent="World" instance=ExtResource( 17 )]
+[node name="Wall8" parent="World" instance=ExtResource( 18 )]
 position = Vector2( 1050, -850 )
 width = 300.0
 height = 500.0
 
-[node name="Wall9" parent="World" instance=ExtResource( 17 )]
+[node name="Wall9" parent="World" instance=ExtResource( 18 )]
 position = Vector2( -1050, -850 )
 width = 300.0
 height = 500.0
 
-[node name="Wall10" parent="World" instance=ExtResource( 17 )]
+[node name="Wall10" parent="World" instance=ExtResource( 18 )]
 position = Vector2( 10, -1825 )
 width = 1000.0
 height = 250.0
 
-[node name="RightWall" parent="World" instance=ExtResource( 17 )]
+[node name="RightWall" parent="World" instance=ExtResource( 18 )]
 position = Vector2( 1700, 0 )
 width = 200.0
 height = 2400.0
 
-[node name="LeftWall" parent="World" instance=ExtResource( 17 )]
+[node name="LeftWall" parent="World" instance=ExtResource( 18 )]
 position = Vector2( -1700, 0 )
 width = 200.0
 height = 2400.0
 
-[node name="TopWall" parent="World" instance=ExtResource( 17 )]
+[node name="TopWall" parent="World" instance=ExtResource( 18 )]
 position = Vector2( 0, -2400 )
 width = 3600.0
 height = 150.0
 
-[node name="BottomWall" parent="World" instance=ExtResource( 17 )]
+[node name="BottomWall" parent="World" instance=ExtResource( 18 )]
 position = Vector2( 0, 150 )
 width = 3600.0
 height = 150.0
 
-[node name="GunSpawner" parent="World" instance=ExtResource( 18 )]
+[node name="GunSpawner" parent="World" instance=ExtResource( 19 )]
 position = Vector2( 850, -450 )
 _sections_unfolded = [ "Transform" ]
 
-[node name="GunSpawner10" parent="World" instance=ExtResource( 18 )]
+[node name="GunSpawner10" parent="World" instance=ExtResource( 19 )]
 position = Vector2( -1250, -450 )
 _sections_unfolded = [ "Transform" ]
 
-[node name="GunSpawner2" parent="World" instance=ExtResource( 18 )]
+[node name="GunSpawner2" parent="World" instance=ExtResource( 19 )]
 position = Vector2( 1250, -450 )
 _sections_unfolded = [ "Transform" ]
 
-[node name="GunSpawner9" parent="World" instance=ExtResource( 18 )]
+[node name="GunSpawner9" parent="World" instance=ExtResource( 19 )]
 position = Vector2( -850, -450 )
 _sections_unfolded = [ "Transform" ]
 
-[node name="GunSpawner3" parent="World" instance=ExtResource( 18 )]
+[node name="GunSpawner3" parent="World" instance=ExtResource( 19 )]
 position = Vector2( 1450, -450 )
 
-[node name="GunSpawner6" parent="World" instance=ExtResource( 18 )]
+[node name="GunSpawner6" parent="World" instance=ExtResource( 19 )]
 position = Vector2( -650, -450 )
 _sections_unfolded = [ "Transform" ]
 
-[node name="GunSpawner4" parent="World" instance=ExtResource( 18 )]
+[node name="GunSpawner4" parent="World" instance=ExtResource( 19 )]
 position = Vector2( 650, -450 )
 _sections_unfolded = [ "Transform" ]
 
-[node name="GunSpawner11" parent="World" instance=ExtResource( 18 )]
+[node name="GunSpawner11" parent="World" instance=ExtResource( 19 )]
 position = Vector2( 0, -2200 )
 _sections_unfolded = [ "Transform" ]
 
-[node name="GunSpawner12" parent="World" instance=ExtResource( 18 )]
+[node name="GunSpawner12" parent="World" instance=ExtResource( 19 )]
 position = Vector2( 0, -1625 )
 _sections_unfolded = [ "Transform" ]
 
-[node name="GunSpawner13" parent="World" instance=ExtResource( 18 )]
-position = Vector2( 1400, -2100 )
+[node name="GunSpawner13" parent="World" instance=ExtResource( 19 )]
+position = Vector2( 1410, -2200 )
 _sections_unfolded = [ "Transform" ]
 
-[node name="GunSpawner14" parent="World" instance=ExtResource( 18 )]
-position = Vector2( -1400, -2140 )
+[node name="GunSpawner14" parent="World" instance=ExtResource( 19 )]
+position = Vector2( -1410, -2200 )
 _sections_unfolded = [ "Transform" ]
 
-[node name="GunSpawner7" parent="World" instance=ExtResource( 18 )]
+[node name="GunSpawner7" parent="World" instance=ExtResource( 19 )]
 position = Vector2( -1450, -450 )
 
-[node name="GunSpawner5" parent="World" instance=ExtResource( 18 )]
+[node name="GunSpawner5" parent="World" instance=ExtResource( 19 )]
 position = Vector2( 1046, -450 )
 _sections_unfolded = [ "Transform" ]
 
-[node name="GunSpawner8" parent="World" instance=ExtResource( 18 )]
+[node name="GunSpawner8" parent="World" instance=ExtResource( 19 )]
 position = Vector2( -1050, -450 )
 _sections_unfolded = [ "Transform" ]
 
-[node name="BlueInvisibleWall" parent="World" instance=ExtResource( 19 )]
+[node name="BlueInvisibleWall" parent="World" instance=ExtResource( 20 )]
 position = Vector2( 1046, -250 )
 scale = Vector2( 11, 1 )
 _sections_unfolded = [ "Transform" ]
 
-[node name="RedInvisibleWall2" parent="World" instance=ExtResource( 19 )]
+[node name="RedInvisibleWall2" parent="World" instance=ExtResource( 20 )]
 position = Vector2( -1050, -245 )
 scale = Vector2( 11, 1 )
 _sections_unfolded = [ "Transform" ]
 
 [node name="Feel" type="Node2D" parent="."]
-script = ExtResource( 20 )
+script = ExtResource( 21 )
 player_path = NodePath("")
 
 [node name="CameraDirector" type="Node2D" parent="Feel"]
 position = Vector2( 1046, -300 )
-script = ExtResource( 21 )
+script = ExtResource( 22 )
 mouse_weight = 0.4
 
 [node name="Camera" type="Camera2D" parent="Feel/CameraDirector"]
 anchor_mode = 1
 rotating = false
-current = false
+current = true
 zoom = Vector2( 1.25, 1.25 )
 limit_left = -1800
 limit_top = -2545
@@ -305,10 +313,10 @@ editor_draw_limits = false
 editor_draw_drag_margin = false
 _sections_unfolded = [ "Drag Margin", "Limit", "Offset", "Smoothing", "Z Index" ]
 
-[node name="ScreenFlash" parent="Feel/CameraDirector" instance=ExtResource( 22 )]
+[node name="ScreenFlash" parent="Feel/CameraDirector" instance=ExtResource( 23 )]
 _sections_unfolded = [ "Rect", "Transform", "Visibility" ]
 
-[node name="ScreenShake" parent="Feel/CameraDirector" instance=ExtResource( 23 )]
+[node name="ScreenShake" parent="Feel/CameraDirector" instance=ExtResource( 24 )]
 strength = 10.0
 duration = 0.15
 
@@ -321,13 +329,13 @@ scale = Vector2( 1, 1 )
 transform = Transform2D( 1, 0, 0, 1, 0, 0 )
 _sections_unfolded = [ "Pause" ]
 
-[node name="HUD" parent="UI" instance=ExtResource( 24 )]
+[node name="HUD" parent="UI" instance=ExtResource( 25 )]
 teaming_path = NodePath("../../Mechanics/Teaming")
 match_timer_path = NodePath("../../Mechanics/MatchTimer")
 
-[node name="GameOverScreen" parent="UI" instance=ExtResource( 25 )]
+[node name="GameOverScreen" parent="UI" instance=ExtResource( 26 )]
 winning_path = NodePath("../../Mechanics/Winning")
 
-[node name="PauseScreen" parent="UI" instance=ExtResource( 26 )]
+[node name="PauseScreen" parent="UI" instance=ExtResource( 27 )]
 visible = false
 
