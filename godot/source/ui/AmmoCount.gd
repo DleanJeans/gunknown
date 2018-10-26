@@ -5,6 +5,7 @@ onready var MaxAmmo = $Labels/MaxAmmo
 
 var player:Gunner
 var gun:Gun
+var gun_ref:WeakRef
 
 func set_player(player:Gunner):
 	self.player = player
@@ -15,10 +16,12 @@ func set_player(player:Gunner):
 
 func _show_self():
 	gun = player.get_node('Gun')
+	gun_ref = weakref(gun)
 	AmmoLeft.text = '?'
 	MaxAmmo.text = '/ ?'
 	$AnimationPlayer.play('Show')
 
 func _update_count():
-	AmmoLeft.text = str(gun.ammo_left)
-	MaxAmmo.text = '/ %s' % str(gun.initial_ammo)
+	if gun_ref.get_ref():
+		AmmoLeft.text = str(gun.ammo_left)
+		MaxAmmo.text = '/ %s' % str(gun.initial_ammo)

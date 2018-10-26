@@ -1,40 +1,69 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://source/ai/Brain.gd" type="Script" id=1]
-[ext_resource path="res://source/ai/Steering.gd" type="Script" id=2]
-[ext_resource path="res://source/ai/steering/Seek.gd" type="Script" id=3]
-[ext_resource path="res://source/ai/FollowPath.gd" type="Script" id=4]
-[ext_resource path="res://source/ai/Separation.gd" type="Script" id=5]
+[ext_resource path="res://source/ai/TargetSelector.gd" type="Script" id=2]
+[ext_resource path="res://fonts/Montserrat-ExtraBold.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://source/ai/Memory.gd" type="Script" id=4]
+[ext_resource path="res://source/ai/Steering.gd" type="Script" id=5]
+[ext_resource path="res://source/ai/steering/Seek.gd" type="Script" id=6]
+[ext_resource path="res://source/ai/FollowPath.gd" type="Script" id=7]
+[ext_resource path="res://source/ai/Separation.gd" type="Script" id=8]
+
+[sub_resource type="DynamicFont" id=1]
+
+size = 30
+outline_size = 0
+outline_color = Color( 1, 1, 1, 1 )
+use_mipmaps = false
+use_filter = false
+font_data = ExtResource( 3 )
+_sections_unfolded = [ "Settings" ]
 
 [sub_resource type="CircleShape2D" id=2]
 
 custom_solver_bias = 0.0
 radius = 100.0
 
-[sub_resource type="RectangleShape2D" id=1]
+[sub_resource type="RectangleShape2D" id=3]
 
 custom_solver_bias = 0.0
-extents = Vector2( 960, 640 )
+extents = Vector2( 1000, 560 )
 
 [node name="Brain" type="Node2D"]
 script = ExtResource( 1 )
+aim_ahead = 500.0
+
+[node name="TargetSelector" type="Node2D" parent="."]
+z_index = 1
+script = ExtResource( 2 )
+_sections_unfolded = [ "Z Index", "debug_font" ]
+criterium_score = 100
+enable_drawing_debug_score = true
+debug_score_offset = Vector2( -100, 50 )
+debug_font = SubResource( 1 )
+
+[node name="Memory" type="Node2D" parent="."]
+script = ExtResource( 4 )
+forget_time = 5.0
 
 [node name="Steering" type="Node2D" parent="."]
-script = ExtResource( 2 )
+script = ExtResource( 5 )
 
 [node name="Seek" type="Node2D" parent="Steering"]
-script = ExtResource( 3 )
+script = ExtResource( 6 )
 
 [node name="FollowPath" type="Node2D" parent="Steering"]
-script = ExtResource( 4 )
+script = ExtResource( 7 )
 threshold = 50.0
 
 [node name="Separation" type="Node2D" parent="Steering"]
 visible = false
-script = ExtResource( 5 )
+script = ExtResource( 8 )
 decay = 1000000
 
 [node name="Vicinity" type="Area2D" parent="Steering/Separation"]
+editor/display_folded = true
+visible = false
 input_pickable = true
 gravity_vec = Vector2( 0, 1 )
 gravity = 98.0
@@ -50,7 +79,7 @@ shape = SubResource( 2 )
 _sections_unfolded = [ "shape" ]
 
 [node name="Vision" type="Area2D" parent="."]
-visible = false
+z_index = 1
 input_pickable = true
 gravity_vec = Vector2( 0, 1 )
 gravity = 98.0
@@ -63,7 +92,7 @@ audio_bus_name = "Master"
 _sections_unfolded = [ "Collision" ]
 
 [node name="Shape" type="CollisionShape2D" parent="Vision"]
-shape = SubResource( 1 )
+shape = SubResource( 3 )
 _sections_unfolded = [ "shape" ]
 
 [node name="RayCast" type="RayCast2D" parent="."]

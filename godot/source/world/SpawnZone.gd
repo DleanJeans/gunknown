@@ -44,14 +44,15 @@ func _spawn_gunners():
 	yield(get_tree(), 'idle_frame') # do not remove
 	
 	for position in spawn_points:
-		_spawn(position)
-		if _reached_debug_spawn_limit():
+		if _reached_debug_spawn_limit(position):
 			break
+		_spawn(position)
 	
 	emit_signal('spawned_all')
 
-func _reached_debug_spawn_limit():
-	return enable_debug_spawn_limit and spawn_points.find(position) >= debug_spawn_limit - 1
+func _reached_debug_spawn_limit(position):
+	var spawn_point_index = spawn_points.find(position)
+	return enable_debug_spawn_limit and spawn_point_index >= debug_spawn_limit
 
 func _spawn(position:Vector2):
 	var gunner = Scenes.Gunner.instance()
@@ -72,8 +73,9 @@ func _respawn(gunner):
 	yield(get_tree().create_timer(respawn_wait, false), 'timeout')
 	
 	var spawn_point = _get_random_spawn_point()
-	gunner.revive()
 	gunner.position = spawn_point
+	yield(get_tree(), 'idle_frame')
+	gunner.revive()
 
 func _get_random_spawn_point():
 	return spawn_points[randi() % spawn_points.size()]

@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://source/world/Gunner.gd" type="Script" id=1]
 [ext_resource path="res://assets/png/Gunner.png" type="Texture" id=2]
 [ext_resource path="res://source/world/Shadow.tscn" type="PackedScene" id=3]
+[ext_resource path="res://source/world/GunnerVision.tscn" type="PackedScene" id=4]
 
 [sub_resource type="CapsuleShape2D" id=1]
 
@@ -126,4 +127,7 @@ playback_speed = 1.0
 anims/Die = SubResource( 3 )
 blend_times = [  ]
 _sections_unfolded = [ "Playback Options" ]
+
+[node name="Vision" parent="." instance=ExtResource( 4 )]
+_sections_unfolded = [ "Drag Margin", "Limit", "Offset", "Smoothing", "Transform", "Z Index" ]
 

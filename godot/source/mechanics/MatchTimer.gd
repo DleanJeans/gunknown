@@ -10,6 +10,7 @@ export(float) var minutes = 5
 
 onready var match_length = int(minutes * 60)
 
+var match_began = false
 var match_over = false
 var time_left = 0
 var timeouts = 0
@@ -26,6 +27,7 @@ func _on_Timer_timeout():
 	timeouts += 1
 	
 	if timeouts == 1:
+		match_began = true
 		$Timer.start(match_length)
 		emit_signal('match_began')
 	else:

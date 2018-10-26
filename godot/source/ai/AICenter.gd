@@ -1,14 +1,12 @@
 class_name AICenter
 extends Node2D
 
+onready var match_timer:MatchTimer = $'../Mechanics/MatchTimer'
+
 var cached_path
 
-#func _draw():
-#	if cached_path:
-#		draw_polyline(cached_path, Color.red, 3)
-#
-#func _process(delta):
-#	update()
+func _has_match_began():
+	return match_timer.match_began
 
 func _ready():
 	GameData.set_data('AICenter', self)
@@ -34,14 +32,8 @@ func get_distance_between(from:Vector2, to:Vector2):
 	
 	return total_distance
 
-func get_distance_to_red_advance(from:Vector2):
-	return get_distance_between(from, $Navigation/RedAdvance.global_position)
-
-func get_distance_to_blue_advance(from:Vector2):
-	return get_distance_between(from, $Navigation/BlueAdvance.global_position)
-
-func get_path_to_blue_advance(from:Vector2):
-	return get_path_between(from, $Navigation/BlueAdvance.global_position)
-
-func get_path_to_red_advance(from:Vector2):
-	return get_path_between(from, $Navigation/RedAdvance.global_position)
+func get_distance_to_center(from:Vector2):
+	return get_distance_between(from, $Navigation/Center.global_position)
+	
+func get_path_to_center(from:Vector2):
+	return get_path_between(from, $Navigation/Center.global_position)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=2]
+[gd_scene load_steps=30 format=2]
 
 [ext_resource path="res://source/debug/Debug.gd" type="Script" id=1]
 [ext_resource path="res://source/debug/TimeControl.gd" type="Script" id=2]
@@ -11,7 +11,7 @@
 [ext_resource path="res://source/mechanics/MatchTimer.tscn" type="PackedScene" id=9]
 [ext_resource path="res://source/mechanics/PrematchCage.gd" type="Script" id=10]
 [ext_resource path="res://source/mechanics/Winning.gd" type="Script" id=11]
-[ext_resource path="res://source/mechanics/PlayerSetter.gd" type="Script" id=12]
+[ext_resource path="res://source/mechanics/PlayerSelector.gd" type="Script" id=12]
 [ext_resource path="res://source/mechanics/AftermatchSlomo.gd" type="Script" id=13]
 [ext_resource path="res://source/ai/AICenter.gd" type="Script" id=14]
 [ext_resource path="res://source/ai/Navigation.gd" type="Script" id=15]
@@ -24,15 +24,16 @@
 [ext_resource path="res://source/feel/CameraDirector.gd" type="Script" id=22]
 [ext_resource path="res://source/feel/ScreenFlash.tscn" type="PackedScene" id=23]
 [ext_resource path="res://source/feel/ScreenShake.tscn" type="PackedScene" id=24]
-[ext_resource path="res://source/ui/HUD.tscn" type="PackedScene" id=25]
-[ext_resource path="res://source/ui/GameOverScreen.tscn" type="PackedScene" id=26]
-[ext_resource path="res://source/ui/PauseScreen.tscn" type="PackedScene" id=27]
+[ext_resource path="res://source/world/GunnerVision.tscn" type="PackedScene" id=25]
+[ext_resource path="res://source/ui/HUD.tscn" type="PackedScene" id=26]
+[ext_resource path="res://source/ui/GameOverScreen.tscn" type="PackedScene" id=27]
+[ext_resource path="res://source/ui/PauseScreen.tscn" type="PackedScene" id=28]
 
 [sub_resource type="NavigationPolygon" id=1]
 
-vertices = PoolVector2Array( -860, -2130, -1600, -2350, 1600, -2350, -530, -2130, -1240, -2130, 1600, 50, 1240, -760, 1240, -1400, 1230, -1740, 1230, -2130, -1600, 50, -1240, -1740, -860, -1400, -530, -1740, -500, -1570, -500, 50, -860, -760, 500, 50, 860, -760, 500, -1570, 860, -1400, -1240, -760, 860, -1740, 550, -1740, 860, -2130, 550, -2130, -1240, -1400, -860, -1740 )
-polygons = [ PoolIntArray( 0, 1, 2, 3 ), PoolIntArray( 1, 0, 4 ), PoolIntArray( 2, 5, 6, 7 ), PoolIntArray( 2, 7, 8, 9 ), PoolIntArray( 10, 1, 4, 11 ), PoolIntArray( 12, 13, 14, 15, 16 ), PoolIntArray( 6, 5, 17, 18 ), PoolIntArray( 18, 17, 19, 20 ), PoolIntArray( 16, 15, 10, 21 ), PoolIntArray( 22, 8, 7, 20, 19 ), PoolIntArray( 22, 19, 23, 24 ), PoolIntArray( 13, 23, 19, 14 ), PoolIntArray( 24, 23, 25 ), PoolIntArray( 13, 12, 26, 27 ), PoolIntArray( 2, 9, 24 ), PoolIntArray( 26, 21, 10 ), PoolIntArray( 26, 10, 11 ), PoolIntArray( 26, 11, 27 ), PoolIntArray( 13, 27, 0, 3 ), PoolIntArray( 25, 3, 2 ), PoolIntArray( 25, 2, 24 ) ]
-outlines = [ PoolVector2Array( -1600, 50, -1600, -2350, 1600, -2350, 1600, 50, 500, 50, 500, -1570, -500, -1570, -500, 50 ), PoolVector2Array( -860, -760, -1240, -760, -1240, -1400, -860, -1400 ), PoolVector2Array( -860, -1740, -1240, -1740, -1240, -2130, -860, -2130 ), PoolVector2Array( -530, -2130, 550, -2130, 550, -1740, -530, -1740 ), PoolVector2Array( 860, -2130, 1230, -2130, 1230, -1740, 860, -1740 ), PoolVector2Array( 860, -1400, 1240, -1400, 1240, -760, 860, -760 ) ]
+vertices = PoolVector2Array( 1600, -2350, 1600, 50, 1240, -760, 1240, -1400, 1230, -1740, 1230, -2130, -1600, -2350, 860, -2130, -860, -2130, -1240, -2130, -1600, 50, -1240, -1740, -500, -1570, -500, 50, -860, -1400, -860, -1740, -860, -760, 500, 50, 860, -760, 500, -1570, 860, -1400, -1240, -760, 860, -1740, -1240, -1400 )
+polygons = [ PoolIntArray( 0, 1, 2, 3 ), PoolIntArray( 0, 3, 4, 5 ), PoolIntArray( 6, 0, 5, 7 ), PoolIntArray( 6, 7, 8 ), PoolIntArray( 6, 8, 9 ), PoolIntArray( 10, 6, 9, 11 ), PoolIntArray( 12, 13, 14, 15 ), PoolIntArray( 16, 14, 13 ), PoolIntArray( 2, 1, 17, 18 ), PoolIntArray( 18, 17, 19, 20 ), PoolIntArray( 16, 13, 10, 21 ), PoolIntArray( 22, 4, 3, 20, 19 ), PoolIntArray( 15, 8, 7, 22, 19, 12 ), PoolIntArray( 11, 15, 14, 23 ), PoolIntArray( 10, 11, 23 ), PoolIntArray( 21, 10, 23 ) ]
+outlines = [ PoolVector2Array( -1600, 50, -1600, -2350, 1600, -2350, 1600, 50, 500, 50, 500, -1570, -500, -1570, -500, 50 ), PoolVector2Array( -860, -760, -1240, -760, -1240, -1400, -860, -1400 ), PoolVector2Array( -860, -1740, -1240, -1740, -1240, -2130, -860, -2130 ), PoolVector2Array( 860, -2130, 1230, -2130, 1230, -1740, 860, -1740 ), PoolVector2Array( 860, -1400, 1240, -1400, 1240, -760, 860, -760 ) ]
 
 [node name="Game" type="Node2D"]
 
@@ -44,7 +45,7 @@ enable = true
 pause_mode = 2
 script = ExtResource( 2 )
 _sections_unfolded = [ "Pause" ]
-slomo_time_scale = 0.1
+slomo_time_scale = 0.25
 
 [node name="HealthChanger" type="Node2D" parent="Debug"]
 script = ExtResource( 3 )
@@ -79,7 +80,7 @@ script = ExtResource( 10 )
 [node name="Winning" type="Node2D" parent="Mechanics"]
 script = ExtResource( 11 )
 
-[node name="PlayerSetter" type="Node2D" parent="Mechanics"]
+[node name="PlayerSelector" type="Node2D" parent="Mechanics"]
 script = ExtResource( 12 )
 spawn_zone_path = NodePath("../../World/SpawnZoneBlue")
 camera_director_path = NodePath("../../Feel/CameraDirector")
@@ -101,13 +102,7 @@ navpoly = SubResource( 1 )
 enabled = true
 
 [node name="Center" type="Position2D" parent="AICenter/Navigation"]
-position = Vector2( 0, -1625 )
-
-[node name="BlueAdvance" type="Position2D" parent="AICenter/Navigation"]
-position = Vector2( -1050, -670 )
-
-[node name="RedAdvance" type="Position2D" parent="AICenter/Navigation"]
-position = Vector2( 1050, -670 )
+position = Vector2( 0, -1980 )
 
 [node name="World" type="YSort" parent="."]
 sort_enabled = true
@@ -190,11 +185,6 @@ position = Vector2( -1050, -850 )
 width = 300.0
 height = 500.0
 
-[node name="Wall10" parent="World" instance=ExtResource( 18 )]
-position = Vector2( 10, -1825 )
-width = 1000.0
-height = 250.0
-
 [node name="RightWall" parent="World" instance=ExtResource( 18 )]
 position = Vector2( 1700, 0 )
 width = 200.0
@@ -243,11 +233,11 @@ position = Vector2( 650, -450 )
 _sections_unfolded = [ "Transform" ]
 
 [node name="GunSpawner11" parent="World" instance=ExtResource( 19 )]
-position = Vector2( 0, -2200 )
+position = Vector2( -1040, -1540 )
 _sections_unfolded = [ "Transform" ]
 
 [node name="GunSpawner12" parent="World" instance=ExtResource( 19 )]
-position = Vector2( 0, -1625 )
+position = Vector2( 1040, -1550 )
 _sections_unfolded = [ "Transform" ]
 
 [node name="GunSpawner13" parent="World" instance=ExtResource( 19 )]
@@ -286,32 +276,8 @@ player_path = NodePath("")
 [node name="CameraDirector" type="Node2D" parent="Feel"]
 position = Vector2( 1046, -300 )
 script = ExtResource( 22 )
+enabled = true
 mouse_weight = 0.4
-
-[node name="Camera" type="Camera2D" parent="Feel/CameraDirector"]
-anchor_mode = 1
-rotating = false
-current = true
-zoom = Vector2( 1.25, 1.25 )
-limit_left = -1800
-limit_top = -2545
-limit_right = 1800
-limit_bottom = 150
-limit_smoothed = false
-drag_margin_h_enabled = true
-drag_margin_v_enabled = true
-smoothing_enabled = true
-smoothing_speed = 5.0
-offset_v = 0.0
-offset_h = 0.0
-drag_margin_left = 0.0
-drag_margin_top = 0.0
-drag_margin_right = 0.0
-drag_margin_bottom = 0.0
-editor_draw_screen = true
-editor_draw_limits = false
-editor_draw_drag_margin = false
-_sections_unfolded = [ "Drag Margin", "Limit", "Offset", "Smoothing", "Z Index" ]
 
 [node name="ScreenFlash" parent="Feel/CameraDirector" instance=ExtResource( 23 )]
 _sections_unfolded = [ "Rect", "Transform", "Visibility" ]
@@ -319,6 +285,10 @@ _sections_unfolded = [ "Rect", "Transform", "Visibility" ]
 [node name="ScreenShake" parent="Feel/CameraDirector" instance=ExtResource( 24 )]
 strength = 10.0
 duration = 0.15
+
+[node name="Vision" parent="Feel/CameraDirector" instance=ExtResource( 25 )]
+current = true
+_sections_unfolded = [ "Drag Margin", "Limit", "Offset", "Smoothing", "Transform", "Z Index" ]
 
 [node name="UI" type="CanvasLayer" parent="."]
 pause_mode = 2
@@ -329,13 +299,17 @@ scale = Vector2( 1, 1 )
 transform = Transform2D( 1, 0, 0, 1, 0, 0 )
 _sections_unfolded = [ "Pause" ]
 
-[node name="HUD" parent="UI" instance=ExtResource( 25 )]
+[node name="HUD" parent="UI" instance=ExtResource( 26 )]
+margin_left = 20.0
+margin_top = -10.0
+margin_right = 20.0
+margin_bottom = -10.0
 teaming_path = NodePath("../../Mechanics/Teaming")
 match_timer_path = NodePath("../../Mechanics/MatchTimer")
 
-[node name="GameOverScreen" parent="UI" instance=ExtResource( 26 )]
+[node name="GameOverScreen" parent="UI" instance=ExtResource( 27 )]
 winning_path = NodePath("../../Mechanics/Winning")
 
-[node name="PauseScreen" parent="UI" instance=ExtResource( 27 )]
+[node name="PauseScreen" parent="UI" instance=ExtResource( 28 )]
 visible = false
 

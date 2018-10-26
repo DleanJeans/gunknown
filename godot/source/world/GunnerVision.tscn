@@ -1,0 +1,27 @@
+[gd_scene format=2]
+
+[node name="Vision" type="Camera2D"]
+anchor_mode = 1
+rotating = false
+current = false
+zoom = Vector2( 1.25, 1.25 )
+limit_left = -1800
+limit_top = -2545
+limit_right = 1800
+limit_bottom = 150
+limit_smoothed = false
+drag_margin_h_enabled = true
+drag_margin_v_enabled = true
+smoothing_enabled = true
+smoothing_speed = 5.0
+offset_v = 0.0
+offset_h = 0.0
+drag_margin_left = 0.0
+drag_margin_top = 0.0
+drag_margin_right = 0.0
+drag_margin_bottom = 0.0
+editor_draw_screen = true
+editor_draw_limits = false
+editor_draw_drag_margin = false
+_sections_unfolded = [ "Drag Margin", "Limit", "Offset", "Smoothing", "Z Index" ]
+

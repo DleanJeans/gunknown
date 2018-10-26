@@ -1,14 +1,13 @@
 extends Node2D
 
-export(NodePath) var camera_node
 export(float) var strength = 10
 export(float) var duration = 0.2
 
-onready var camera:Camera = get_node(camera_node)
+var camera:Camera2D
 onready var half_duration = duration * 0.5
 
 func shake_to(direction:Vector2, multiplier = 1):
-	if OS.get_name() == 'HTML5':
+	if OS.get_name() == 'HTML5' or not camera:
 		return
 	var to = direction * strength * multiplier
 	

@@ -19,6 +19,9 @@ var gun
 var hp = 200 setget set_hp
 var dead = false
 
+func get_vision():
+	return $Vision
+
 func is_player():
 	return name == 'Gunner'
 
