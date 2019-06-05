@@ -1,0 +1,55 @@
+[gd_scene load_steps=3 format=2]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends ColorRect
+class_name Transition
+
+func change_scene(path:String):
+	transition(get_tree(), 'change_scene', [path])
+
+func change_scene_to(scene:PackedScene):
+	transition(get_tree(), 'change_scene_to', [scene])
+
+func reload_current_scene():
+	transition(get_tree(), 'reload_current_scene')
+
+func transition(object, method, args=[]):
+	show()
+	raise()
+	$AnimationPlayer.play('fade')
+	yield($AnimationPlayer, 'animation_finished')
+	
+	object.callv(method, args)
+	
+	call_deferred('raise')
+	$AnimationPlayer.play_backwards('fade')
+	yield($AnimationPlayer, 'animation_finished')
+	hide()"
+
+[sub_resource type="Animation" id=2]
+resource_name = "fade"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[node name="Transition" type="ColorRect"]
+pause_mode = 2
+visible = false
+modulate = Color( 1, 1, 1, 0 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 1 )
+script = SubResource( 1 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/fade = SubResource( 2 )

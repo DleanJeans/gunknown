@@ -1,0 +1,45 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://assets/theme/Default.theme" type="Theme" id=1]
+[ext_resource path="res://icon.png" type="Texture" id=2]
+[ext_resource path="res://source/ui/Pause.tscn" type="PackedScene" id=3]
+[ext_resource path="res://source/ui/Title.tscn" type="PackedScene" id=4]
+[ext_resource path="res://source/ui/GameOver.tscn" type="PackedScene" id=5]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends Button
+
+func _ready():
+	rect_position = Vector2(rand_range(200, 1600), rand_range(200, 600))"
+
+[node name="Game" type="Node2D"]
+
+[node name="World" type="Node2D" parent="."]
+
+[node name="Mechanics" type="Node2D" parent="."]
+
+[node name="UI" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="End" type="Button" parent="UI"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -134.0
+margin_top = -63.5
+margin_right = 134.0
+margin_bottom = 63.5
+mouse_default_cursor_shape = 2
+theme = ExtResource( 1 )
+text = "End"
+icon = ExtResource( 2 )
+script = SubResource( 1 )
+
+[node name="Pause" parent="UI" instance=ExtResource( 3 )]
+title_scene = ExtResource( 4 )
+
+[node name="GameOver" parent="UI" instance=ExtResource( 5 )]
+visible = false
+main_menu = ExtResource( 4 )
+[connection signal="pressed" from="UI/End" to="UI/GameOver" method="show"]

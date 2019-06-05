@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://assets/ParticlesScale.tres" type="Curve" id=1]
+[ext_resource path="res://source/prototype3d/Particles.gd" type="Script" id=2]
+
+[sub_resource type="SpatialMaterial" id=5]
+
+[sub_resource type="CubeMesh" id=6]
+material = SubResource( 5 )
+size = Vector3( 0.3, 0.3, 0.3 )
+
+[node name="Particles" type="CPUParticles"]
+emitting = false
+one_shot = true
+speed_scale = 2.0
+explosiveness = 0.9
+randomness = 1.0
+local_coords = false
+mesh = SubResource( 6 )
+flag_align_y = true
+flag_rotate_y = true
+spread = 60.0
+flatness = 0.5
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 3.0
+initial_velocity_random = 0.5
+angular_velocity = 0.030303
+scale_amount_random = 1.0
+scale_amount_curve = ExtResource( 1 )
+script = ExtResource( 2 )

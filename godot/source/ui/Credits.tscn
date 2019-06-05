@@ -1,0 +1,61 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://assets/theme/Default.theme" type="Theme" id=1]
+[ext_resource path="res://assets/theme/TitleFont.tres" type="DynamicFont" id=2]
+[ext_resource path="res://assets/theme/JelleeRoman.otf" type="DynamicFontData" id=3]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends Control
+
+export(PackedScene) var title = load('res://source/ui/Title.tscn')
+
+func open_title():
+	Transition.change_scene_to(title)"
+
+[sub_resource type="DynamicFont" id=2]
+size = 50
+font_data = ExtResource( 3 )
+
+[node name="Credits" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 1 )
+script = SubResource( 1 )
+
+[node name="Background" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.156863, 0.619608, 0.8, 1 )
+
+[node name="TitleLabel" type="Label" parent="."]
+margin_left = 50.0
+margin_top = 50.0
+margin_right = 586.0
+margin_bottom = 231.0
+custom_fonts/font = ExtResource( 2 )
+text = "Credits"
+
+[node name="Back" type="Button" parent="."]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -300.0
+margin_top = -150.0
+mouse_default_cursor_shape = 2
+text = "Back"
+flat = true
+align = 0
+
+[node name="Label" type="RichTextLabel" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -900.0
+margin_top = -300.0
+margin_right = 900.0
+margin_bottom = 300.0
+custom_fonts/normal_font = SubResource( 2 )
+text = "Game by Dlean Jeans"
+[connection signal="pressed" from="Back" to="." method="open_title"]

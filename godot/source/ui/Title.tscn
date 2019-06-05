@@ -1,0 +1,76 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://assets/theme/Default.theme" type="Theme" id=1]
+[ext_resource path="res://assets/theme/JelleeRoman.otf" type="DynamicFontData" id=2]
+
+[sub_resource type="GDScript" id=1]
+script/source = "tool
+extends Control
+
+export(PackedScene) var how_to_play = preload('res://source/ui/HowToPlay.tscn')
+export(PackedScene) var credits = preload('res://source/ui/Credits.tscn')
+
+export var use_project_name = true
+
+func _ready():
+	if use_project_name:
+		$TitleLabel.text = ProjectSettings.get_setting('application/config/name')
+
+func open_how_to_play():
+	Transition.change_scene_to(how_to_play)
+
+func open_credits():
+	Transition.change_scene_to(credits)"
+
+[sub_resource type="DynamicFont" id=2]
+size = 150
+extra_spacing_bottom = -20
+font_data = ExtResource( 2 )
+
+[node name="Title" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 1 )
+script = SubResource( 1 )
+
+[node name="Background" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.156863, 0.619608, 0.8, 1 )
+
+[node name="TitleLabel" type="Label" parent="."]
+margin_left = 50.0
+margin_top = 50.0
+margin_right = 1408.0
+margin_bottom = 231.0
+custom_fonts/font = SubResource( 2 )
+text = "Gunknown"
+
+[node name="Buttons" type="VBoxContainer" parent="."]
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -420.0
+margin_right = -40.0
+margin_bottom = -40.0
+alignment = 2
+
+[node name="Play" type="Button" parent="Buttons"]
+margin_top = 782.0
+margin_right = 380.0
+margin_bottom = 909.0
+mouse_default_cursor_shape = 2
+text = "Play"
+flat = true
+align = 0
+
+[node name="Credits" type="Button" parent="Buttons"]
+margin_top = 913.0
+margin_right = 380.0
+margin_bottom = 1040.0
+mouse_default_cursor_shape = 2
+text = "Credits"
+flat = true
+align = 0
+[connection signal="pressed" from="Buttons/Play" to="." method="open_how_to_play"]
+[connection signal="pressed" from="Buttons/Credits" to="." method="open_credits"]

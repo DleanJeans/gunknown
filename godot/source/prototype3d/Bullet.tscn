@@ -1,0 +1,128 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://source/prototype3d/Bullet.gd" type="Script" id=1]
+[ext_resource path="res://source/prototype3d/BulletTrail.tscn" type="PackedScene" id=2]
+
+[sub_resource type="CubeMesh" id=1]
+size = Vector3( 0.5, 0.25, 0.25 )
+
+[sub_resource type="ConvexPolygonShape" id=2]
+points = PoolVector3Array( -0.25, 0.125, 0.125, 0.25, 0.125, -0.125, 0.25, 0.125, 0.125, -0.25, 0.125, -0.125, -0.25, -0.125, 0.125, 0.25, -0.125, -0.125, 0.25, -0.125, 0.125, -0.25, -0.125, -0.125, 0.25, 0.125, 0.125, -0.25, 0.125, -0.125, 0.25, 0.125, -0.125, -0.25, 0.125, 0.125, 0.25, -0.125, 0.125, -0.25, -0.125, -0.125, 0.25, -0.125, -0.125, -0.25, -0.125, 0.125, 0.25, 0.125, 0.125, -0.25, -0.125, 0.125, -0.25, 0.125, 0.125, 0.25, -0.125, 0.125, 0.25, 0.125, -0.125, -0.25, -0.125, -0.125, -0.25, 0.125, -0.125, 0.25, -0.125, -0.125 )
+
+[sub_resource type="SphereMesh" id=3]
+radius = 0.5
+height = 1.0
+
+[sub_resource type="VisualShaderNodeColorConstant" id=4]
+constant = Color( 0, 1, 0.5, 0.5 )
+
+[sub_resource type="VisualShaderNodeScalarUniform" id=5]
+uniform_name = "Alpha"
+
+[sub_resource type="VisualShaderNodeScalarOp" id=6]
+operator = 7
+
+[sub_resource type="VisualShader" id=7]
+code = "shader_type spatial;
+uniform float Alpha;
+
+
+
+void vertex() {
+// Sortie:0
+
+}
+
+void fragment() {
+// Color:2
+	vec3 n_out2p0;
+	float n_out2p1;
+	n_out2p0 = vec3(0.000000,1.000000,0.500000);
+	n_out2p1 = 0.500000;
+
+// ScalarUniform:3
+	float n_out3p0;
+	n_out3p0 = Alpha;
+
+// ScalarOp:4
+	float n_out4p0;
+	n_out4p0 = min( n_out2p1 , n_out3p0 );
+
+// Sortie:0
+	ALBEDO = n_out2p0;
+	ALPHA = n_out4p0;
+
+}
+
+void light() {
+// Sortie:0
+
+}
+"
+graph_offset = Vector2( 0, 136.25 )
+nodes/fragment/2/node = SubResource( 4 )
+nodes/fragment/2/position = Vector2( 60, 180 )
+nodes/fragment/3/node = SubResource( 5 )
+nodes/fragment/3/position = Vector2( -20, 300 )
+nodes/fragment/4/node = SubResource( 6 )
+nodes/fragment/4/position = Vector2( 220, 240 )
+nodes/fragment/connections = PoolIntArray( 2, 0, 0, 0, 2, 1, 4, 0, 3, 0, 4, 1, 4, 0, 0, 1 )
+
+[sub_resource type="ShaderMaterial" id=8]
+shader = SubResource( 7 )
+shader_param/Alpha = 0.5
+
+[sub_resource type="Animation" id=9]
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath("Explosion:scale")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 0.5, 1 ),
+"update": 0,
+"values": [ Vector3( 0.01, 0.01, 0.01 ), Vector3( 1, 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Explosion:material/0:shader_param/Alpha")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ 0.5, 0.5, 0.0 ]
+}
+
+[node name="Bullet" type="Area"]
+collision_layer = 4
+collision_mask = 10
+script = ExtResource( 1 )
+
+[node name="Mesh" type="MeshInstance" parent="."]
+mesh = SubResource( 1 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+shape = SubResource( 2 )
+
+[node name="VisibilityNotifier" type="VisibilityNotifier" parent="."]
+aabb = AABB( -0.3, -0.2, -0.2, 0.6, 0.4, 0.4 )
+
+[node name="Trail" parent="." instance=ExtResource( 2 )]
+transform = Transform( 0.1, 0, 0, 0, 1, 0, 0, 0, 1, -0.25, 0, 0 )
+
+[node name="Explosion" type="MeshInstance" parent="."]
+transform = Transform( 0.01, 0, 0, 0, 0.01, 0, 0, 0, 0.01, 0, 0, 0 )
+mesh = SubResource( 3 )
+material/0 = SubResource( 8 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/explode = SubResource( 9 )
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="screen_exited" from="VisibilityNotifier" to="." method="stop_to_free"]

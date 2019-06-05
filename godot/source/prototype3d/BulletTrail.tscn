@@ -1,0 +1,99 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://source/prototype3d/BulletTrail.gd" type="Script" id=1]
+
+[sub_resource type="VisualShaderNodeInput" id=1]
+input_name = "uv"
+
+[sub_resource type="VisualShaderNodeVectorDecompose" id=2]
+output_port_for_preview = 1
+
+[sub_resource type="VisualShaderNodeScalarOp" id=3]
+output_port_for_preview = 0
+default_input_values = [ 0, 0.0, 1, 2.0 ]
+operator = 5
+
+[sub_resource type="VisualShaderNodeColorUniform" id=4]
+uniform_name = "color"
+
+[sub_resource type="VisualShader" id=5]
+code = "shader_type spatial;
+render_mode depth_draw_alpha_prepass, cull_disabled;
+
+uniform vec4 color : hint_color;
+
+
+
+void vertex() {
+// Sortie:0
+
+}
+
+void fragment() {
+// ColorUniform:7
+	vec3 n_out7p0;
+	float n_out7p1;
+	n_out7p0 = color.rgb;
+	n_out7p1 = color.a;
+
+// Entrée:3
+	vec3 n_out3p0;
+	n_out3p0 = vec3(UV,0.0);
+
+// VectorDecompose:5
+	float n_out5p0;
+	float n_out5p1;
+	float n_out5p2;
+	n_out5p0 = n_out3p0.x;
+	n_out5p1 = n_out3p0.y;
+	n_out5p2 = n_out3p0.z;
+
+// ScalarOp:6
+	float n_in6p1 = 2.00000;
+	float n_out6p0;
+	n_out6p0 = pow( n_out5p1 , n_in6p1 );
+
+// Sortie:0
+	ALBEDO = n_out7p0;
+	ALPHA = n_out6p0;
+
+}
+
+void light() {
+// Sortie:0
+
+}
+"
+graph_offset = Vector2( 37, 0 )
+modes/cull = 2
+modes/depth_draw = 3
+nodes/fragment/0/position = Vector2( 800, 120 )
+nodes/fragment/3/node = SubResource( 1 )
+nodes/fragment/3/position = Vector2( 120, 280 )
+nodes/fragment/5/node = SubResource( 2 )
+nodes/fragment/5/position = Vector2( 300, 280 )
+nodes/fragment/6/node = SubResource( 3 )
+nodes/fragment/6/position = Vector2( 560, 220 )
+nodes/fragment/7/node = SubResource( 4 )
+nodes/fragment/7/position = Vector2( 400, 80 )
+nodes/fragment/connections = PoolIntArray( 3, 0, 5, 0, 5, 1, 6, 0, 6, 0, 0, 1, 7, 0, 0, 0 )
+
+[sub_resource type="ShaderMaterial" id=6]
+shader = SubResource( 5 )
+shader_param/color = Color( 1, 1, 1, 1 )
+
+[sub_resource type="CylinderMesh" id=7]
+material = SubResource( 6 )
+top_radius = 0.001
+bottom_radius = 0.2
+height = 10.0
+
+[node name="Trail" type="Spatial"]
+transform = Transform( 10.1826, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+script = ExtResource( 1 )
+
+[node name="Mesh" type="MeshInstance" parent="."]
+transform = Transform( -4.37114e-008, -1, 0, 1, -4.37114e-008, 0, 0, 0, 1, -5, 0, 0 )
+cast_shadow = 0
+mesh = SubResource( 7 )
+material/0 = null

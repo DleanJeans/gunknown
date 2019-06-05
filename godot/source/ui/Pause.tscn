@@ -1,0 +1,158 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://assets/theme/Default.theme" type="Theme" id=1]
+[ext_resource path="res://source/ui/Pause.gd" type="Script" id=2]
+[ext_resource path="res://assets/theme/TitleFont.tres" type="DynamicFont" id=3]
+
+[sub_resource type="Animation" id=1]
+resource_name = "fade_panel"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath("Panel:modulate")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0.5 ) ]
+}
+
+[sub_resource type="Animation" id=2]
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath("Buttons:rect_position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 1080 ), Vector2( 0, 600 ), Vector2( 0, 600 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("PauseIcon:custom_constants/separation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 0.5, 1 ),
+"update": 0,
+"values": [ 2800, 50 ]
+}
+
+[sub_resource type="StyleBoxFlat" id=3]
+bg_color = Color( 1, 1, 1, 0.5 )
+
+[sub_resource type="StyleBoxFlat" id=4]
+bg_color = Color( 1, 1, 1, 0.25 )
+
+[sub_resource type="InputEventKey" id=5]
+pressed = true
+scancode = 27
+
+[sub_resource type="ShortCut" id=6]
+shortcut = SubResource( 5 )
+
+[node name="Pause" type="Control"]
+pause_mode = 2
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 1
+theme = ExtResource( 1 )
+script = ExtResource( 2 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+playback_speed = 1.5
+anims/fade_panel = SubResource( 1 )
+anims/show_buttons = SubResource( 2 )
+
+[node name="Panel" type="Panel" parent="."]
+modulate = Color( 1, 1, 1, 0 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 1
+
+[node name="PauseIcon" type="HBoxContainer" parent="."]
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = -540.0
+margin_top = -340.0
+margin_right = 540.0
+margin_bottom = -90.0
+custom_constants/separation = 2800
+alignment = 1
+
+[node name="Rect1" type="ColorRect" parent="PauseIcon"]
+margin_right = 100.0
+margin_bottom = 250.0
+rect_min_size = Vector2( 100, 250 )
+
+[node name="Rect2" type="ColorRect" parent="PauseIcon"]
+margin_left = 2900.0
+margin_right = 3000.0
+margin_bottom = 250.0
+rect_min_size = Vector2( 100, 250 )
+rect_pivot_offset = Vector2( -1985, 120 )
+
+[node name="Buttons" type="VBoxContainer" parent="."]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_bottom = 479.999
+rect_min_size = Vector2( 210, 260 )
+alignment = 1
+
+[node name="Resume" type="Button" parent="Buttons"]
+margin_top = 45.0
+margin_right = 1920.0
+margin_bottom = 172.0
+mouse_default_cursor_shape = 2
+custom_styles/hover = SubResource( 3 )
+custom_styles/pressed = SubResource( 4 )
+text = "Resume"
+flat = true
+
+[node name="Restart" type="Button" parent="Buttons"]
+margin_top = 176.0
+margin_right = 1920.0
+margin_bottom = 303.0
+mouse_default_cursor_shape = 2
+custom_styles/hover = SubResource( 3 )
+custom_styles/pressed = SubResource( 4 )
+text = "Restart"
+flat = true
+
+[node name="Quit" type="Button" parent="Buttons"]
+margin_top = 307.0
+margin_right = 1920.0
+margin_bottom = 434.0
+mouse_default_cursor_shape = 2
+custom_styles/hover = SubResource( 3 )
+custom_styles/pressed = SubResource( 4 )
+shortcut = SubResource( 6 )
+text = "Quit"
+flat = true
+
+[node name="ResumeTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[node name="ResumeLabel" type="Label" parent="."]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_fonts/font = ExtResource( 3 )
+text = "3"
+align = 1
+valign = 1
+[connection signal="pressed" from="Buttons/Resume" to="." method="unpause"]
+[connection signal="pressed" from="Buttons/Restart" to="." method="restart_game"]
+[connection signal="pressed" from="Buttons/Quit" to="." method="quit_to_title"]
